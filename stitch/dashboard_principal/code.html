@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vulcanizadora Nando - Industrial Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000f1e;
+        }
+        h1, h2, h3, .headline {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        /* Custom scrollbar for industrial feel */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000f1e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 2px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff9238;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#6ebaf7",
+                      "surface-tint": "#ff9238",
+                      "on-tertiary-container": "#384d62",
+                      "on-tertiary": "#40556b",
+                      "on-primary-fixed-variant": "#502500",
+                      "on-surface": "#d4e7fe",
+                      "surface-container-low": "#001526",
+                      "on-secondary-fixed": "#003757",
+                      "on-secondary-fixed-variant": "#005582",
+                      "tertiary-fixed": "#c3d9f3",
+                      "surface-container-high": "#052137",
+                      "surface-container-highest": "#09283f",
+                      "tertiary-container": "#c3d9f3",
+                      "background": "#000f1e",
+                      "surface-bright": "#0e2e48",
+                      "secondary-dim": "#5face8",
+                      "on-primary-container": "#3b1a00",
+                      "inverse-primary": "#954b00",
+                      "inverse-on-surface": "#45576a",
+                      "tertiary-fixed-dim": "#b6cbe5",
+                      "error-container": "#b92902",
+                      "secondary-container": "#006497",
+                      "secondary-fixed-dim": "#8bcaff",
+                      "on-tertiary-fixed": "#253a4e",
+                      "on-error-container": "#ffd2c8",
+                      "primary-fixed-dim": "#e57d21",
+                      "error-dim": "#d53d18",
+                      "on-background": "#d4e7fe",
+                      "on-secondary": "#003654",
+                      "tertiary-dim": "#b6cbe5",
+                      "on-primary": "#4c2300",
+                      "on-surface-variant": "#9aadc3",
+                      "primary": "#ff9238",
+                      "inverse-surface": "#f7f9ff",
+                      "surface-variant": "#09283f",
+                      "tertiary": "#d4e7ff",
+                      "error": "#ff7351",
+                      "on-tertiary-fixed-variant": "#41566c",
+                      "on-primary-fixed": "#0f0400",
+                      "surface-container-lowest": "#000000",
+                      "outline-variant": "#384a5c",
+                      "on-secondary-container": "#f4f8ff",
+                      "outline": "#65778b",
+                      "primary-fixed": "#f68a2f",
+                      "surface-dim": "#000f1e",
+                      "primary-dim": "#ec8327",
+                      "surface-container": "#021b2f",
+                      "surface": "#000f1e",
+                      "on-error": "#450900",
+                      "primary-container": "#ef8529",
+                      "secondary-fixed": "#aad6ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": [
+                              "Space Grotesk"
+                      ],
+                      "body": [
+                              "Inter"
+                      ],
+                      "label": [
+                              "Inter"
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="text-on-surface bg-background">
+<!-- SideNavBar -->
+<aside class="flex flex-col fixed left-0 top-0 h-full z-40 bg-[#000f1e] h-screen w-64 border-r border-white/5">
+<div class="px-6 py-8">
+<div class="text-lg font-black text-orange-500 font-headline">Vulcanizadora Nando</div>
+<div class="text-slate-400 text-xs mt-1 font-body">Precision Workshop</div>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<a class="bg-white/5 text-orange-500 border-l-4 border-orange-500 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">point_of_sale</span>
+                POS
+            </a>
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Inventory
+            </a>
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">groups</span>
+                CRM
+            </a>
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">assessment</span>
+                Reports
+            </a>
+</nav>
+<div class="p-4 border-t border-white/5">
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-6 w-full sticky top-0 z-50 bg-[#000f1e] h-16 border-b border-white/10 tonal shift bg-slate-900/50 backdrop-blur-md shadow-lg shadow-black/20">
+<div class="flex items-center gap-6 w-1/2">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
+<input class="w-full bg-surface-container-lowest border-none pl-10 pr-4 py-2 text-sm text-on-surface focus:ring-0 rounded-lg placeholder:text-slate-600" placeholder="Search orders, tires, or customers..." type="text"/>
+<div class="absolute left-0 bottom-0 h-[2px] w-0 bg-primary transition-all duration-300 focus-within:w-full"></div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-400 hover:text-white transition-colors p-2">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-400 hover:text-white transition-colors p-2">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-orange-500/50">
+<img class="w-full h-full object-cover" data-alt="Portrait of a professional workshop manager in a clean uniform, looking confident and professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJEQkPoG6RcpWorozFsg8ehv5dXuugGIgR-XssDdtUhdU6iTrvrOZklFQkfC2CVFT0ETEGMO41J7Y1NSjJ8eb5K1TYFnBbr-Dn305ORn8r5ikT1KVaddeFYkxWJfw8p31tyNL_8C50OdgWTTkprEGJoFSOYkh4WVTTpTG6LObFFSWj3D02AiYoADuEGWnZQbXydIm4yid6MYRBkLp61M3eXtZXFYvetotT8znbDX0TkT177dXUQLpPgML2-M56JcdX_H7vhsYd-wM"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="p-8 space-y-8">
+<!-- Hero Metric Section (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="md:col-span-2 bg-surface-container-low p-6 rounded-lg relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl text-primary">payments</span>
+</div>
+<p class="text-slate-400 text-sm uppercase tracking-widest font-medium">Daily Sales</p>
+<h2 class="text-5xl font-headline font-bold text-on-surface mt-2">$14,280.50</h2>
+<div class="flex items-center gap-2 mt-4 text-emerald-400 text-sm">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+12.5% from yesterday</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg border-l-4 border-error">
+<p class="text-slate-400 text-sm uppercase tracking-widest font-medium">Critical Stock</p>
+<h2 class="text-4xl font-headline font-bold text-on-surface mt-2">12</h2>
+<p class="text-slate-500 text-xs mt-1 italic">SKUs below safety margin</p>
+<div class="mt-4">
+<span class="bg-error-container/20 text-error px-2 py-1 text-[10px] rounded uppercase font-bold tracking-tighter">Immediate Restock Required</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg border-l-4 border-secondary">
+<p class="text-slate-400 text-sm uppercase tracking-widest font-medium">Active Appointments</p>
+<h2 class="text-4xl font-headline font-bold text-on-surface mt-2">08</h2>
+<p class="text-slate-500 text-xs mt-1">Scheduled for today</p>
+<div class="mt-4 flex -space-x-2">
+<img class="w-6 h-6 rounded-full border-2 border-surface-container-low" data-alt="Worker profile headshot small" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-yXepgNXhGYc0nHEnB5rUnEGl_PCkZiTXlzBYCDrBM90UVv_L8ZBixtQwmln2EWdAtPT70MYHVX_IAFjgX8e3o-NmCO_pcca-l4If4XrvcImBEY9zOxm64CoHHFbaCNiCkWbMAk0wAWarM-raMoCS8ROekk7JIoz0kDkMzJiDkRjA2U6l3C21MbeJLpPjw0kNe3IE8zy2sX21nflEnxna82iAvMf7AC7XMhu3BZSE5Mnl38nAIMzpGWS7Ysor-aXEp8Nf2nqmHZc"/>
+<img class="w-6 h-6 rounded-full border-2 border-surface-container-low" data-alt="Worker profile headshot small" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArWzBSKWiBakxj-1ZtZkkLj9S5CQ-V4n7FLg_Ukv4VQuOrujqcF6WVYR-sS2PywWX_bHQ1TzM7YQNC9ysENhLNYPQBreFE-8AXA96e1pKBvQgfjhneFYO5n2BX0DTeewTHQ_BhJ4NVdyAMPD21kOYXO7WjGFCOjxHiBCHxtqRkCHaQZLrQXYell8vCtMVdmhVXyviwLtI8sktG6cZu-yD92GIBMP30Gmd4PxKYBKjEVX05DwEZiyxyJ8EmVRfFMnrTaYhFrg9g5eU"/>
+<img class="w-6 h-6 rounded-full border-2 border-surface-container-low" data-alt="Worker profile headshot small" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_5mNCinFyFsL0iQRW09UYX1I7MraNekAxQkjDNnRaG2xSJYm7q7a7qXLQ6uJGh6eRdyYzXFuE2flinfhJLixxcSv8J3oUP8Z1F6Qw7RWMs4oVEX8ZuCFLeHOuiraM-SX8QFVLWMyTPDuzq_clNY1M8nJjKwwueJG9i7UZhFBpb9klEi7rxieEvRpPUxOCCkoe5sxWatoxl4demsDlcIv5LGllv_P0sGXD1PfRbNZ8SEE4oFVILf5WTSoLWqfPWPf2ZsMYURU8egM"/>
+<div class="w-6 h-6 rounded-full bg-surface-container-highest border-2 border-surface-container-low flex items-center justify-center text-[8px]">+5</div>
+</div>
+</div>
+</div>
+<!-- Performance & Sales Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Recent Sales Table (Machined Look) -->
+<div class="lg:col-span-2 space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="text-2xl font-headline font-bold tracking-tight text-on-surface">Recent Sales</h3>
+<button class="text-primary text-sm font-medium hover:underline flex items-center gap-1">
+                            View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="bg-surface-container-low rounded-lg overflow-hidden border border-white/5">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high/50 text-slate-500 text-[10px] uppercase tracking-widest font-bold">
+<th class="px-6 py-4">Transaction ID</th>
+<th class="px-6 py-4">Client</th>
+<th class="px-6 py-4">Service / Product</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-primary">#VN-9842</td>
+<td class="px-6 py-4">
+<div class="text-sm font-medium">Marco Rossi</div>
+<div class="text-[10px] text-slate-500">Fleet Account</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm">4x Michelin Pilot Sport</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-[10px] rounded-full bg-secondary-container text-on-secondary-container font-bold uppercase">Completed</span>
+</td>
+<td class="px-6 py-4 text-right font-headline font-bold">$1,240.00</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-primary">#VN-9841</td>
+<td class="px-6 py-4">
+<div class="text-sm font-medium">Lucia Mendez</div>
+<div class="text-[10px] text-slate-500">Individual</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm">Alignment &amp; Balancing</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-[10px] rounded-full bg-secondary-container text-on-secondary-container font-bold uppercase">Completed</span>
+</td>
+<td class="px-6 py-4 text-right font-headline font-bold">$85.00</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-primary">#VN-9840</td>
+<td class="px-6 py-4">
+<div class="text-sm font-medium">Auto Logistics SA</div>
+<div class="text-[10px] text-slate-500">Wholesale</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm">20x Bridgestone Ecopia</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-[10px] rounded-full bg-tertiary-container/20 text-tertiary font-bold uppercase">Pending</span>
+</td>
+<td class="px-6 py-4 text-right font-headline font-bold">$4,820.00</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-primary">#VN-9839</td>
+<td class="px-6 py-4">
+<div class="text-sm font-medium">Daniel Ortega</div>
+<div class="text-[10px] text-slate-500">Individual</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm">Rim Repair + Painting</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-[10px] rounded-full bg-secondary-container text-on-secondary-container font-bold uppercase">Completed</span>
+</td>
+<td class="px-6 py-4 text-right font-headline font-bold">$310.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Sales Performance Bar Chart (Visual Representation) -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="text-2xl font-headline font-bold tracking-tight text-on-surface">Weekly Flow</h3>
+<div class="text-slate-500 text-xs flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span> Revenue
+                        </div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg border border-white/5 h-[400px] flex flex-col justify-end">
+<div class="flex items-end justify-between h-full gap-4">
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-surface-container-highest rounded-t-sm relative group">
+<div class="absolute bottom-0 w-full bg-primary/20 h-[40%] group-hover:bg-primary/40 transition-all"></div>
+<div class="h-48 w-full"></div>
+</div>
+<span class="text-[10px] text-slate-500 font-bold">MON</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-surface-container-highest rounded-t-sm relative group">
+<div class="absolute bottom-0 w-full bg-primary/20 h-[65%] group-hover:bg-primary/40 transition-all"></div>
+<div class="h-48 w-full"></div>
+</div>
+<span class="text-[10px] text-slate-500 font-bold">TUE</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-surface-container-highest rounded-t-sm relative group">
+<div class="absolute bottom-0 w-full bg-primary/20 h-[85%] group-hover:bg-primary/40 transition-all border-t-2 border-primary"></div>
+<div class="h-48 w-full"></div>
+</div>
+<span class="text-[10px] text-primary font-bold">WED</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-surface-container-highest rounded-t-sm relative group">
+<div class="absolute bottom-0 w-full bg-primary/20 h-[55%] group-hover:bg-primary/40 transition-all"></div>
+<div class="h-48 w-full"></div>
+</div>
+<span class="text-[10px] text-slate-500 font-bold">THU</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-surface-container-highest rounded-t-sm relative group">
+<div class="absolute bottom-0 w-full bg-primary/20 h-[70%] group-hover:bg-primary/40 transition-all"></div>
+<div class="h-48 w-full"></div>
+</div>
+<span class="text-[10px] text-slate-500 font-bold">FRI</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<div class="w-full bg-surface-container-highest rounded-t-sm relative group">
+<div class="absolute bottom-0 w-full bg-primary/20 h-[95%] group-hover:bg-primary/40 transition-all"></div>
+<div class="h-48 w-full"></div>
+</div>
+<span class="text-[10px] text-slate-500 font-bold">SAT</span>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-white/5 space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-xs text-slate-400">Peak Hour</span>
+<span class="text-xs font-bold text-on-surface">14:00 - 16:00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs text-slate-400">Avg. Ticket</span>
+<span class="text-xs font-bold text-on-surface">$245.50</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Inventory Summary (Machined Part Concept) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+<div class="bg-surface-container-high p-4 rounded-lg flex items-center gap-4 border border-white/5">
+<div class="w-12 h-12 bg-surface-container-highest rounded flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">tire_repair</span>
+</div>
+<div>
+<div class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Tires In Stock</div>
+<div class="text-xl font-headline font-bold text-on-surface">1,482</div>
+</div>
+</div>
+<div class="bg-surface-container-high p-4 rounded-lg flex items-center gap-4 border border-white/5">
+<div class="w-12 h-12 bg-surface-container-highest rounded flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">oil_barrel</span>
+</div>
+<div>
+<div class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Lubes &amp; Fluids</div>
+<div class="text-xl font-headline font-bold text-on-surface">340L</div>
+</div>
+</div>
+<div class="bg-surface-container-high p-4 rounded-lg flex items-center gap-4 border border-white/5">
+<div class="w-12 h-12 bg-surface-container-highest rounded flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">build</span>
+</div>
+<div>
+<div class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Rim Inventory</div>
+<div class="text-xl font-headline font-bold text-on-surface">86 Units</div>
+</div>
+</div>
+<div class="bg-surface-container-high p-4 rounded-lg flex items-center gap-4 border border-white/5">
+<div class="w-12 h-12 bg-surface-container-highest rounded flex items-center justify-center text-orange-400">
+<span class="material-symbols-outlined">qr_code_2</span>
+</div>
+<div>
+<div class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Scanned Today</div>
+<div class="text-xl font-headline font-bold text-on-surface">124 Items</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB - Restricted to Dashboard/Inventory -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+
+```</body></html>

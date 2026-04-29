@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#6ebaf7",
+                        "surface-tint": "#ff9238",
+                        "on-tertiary-container": "#384d62",
+                        "on-tertiary": "#40556b",
+                        "on-primary-fixed-variant": "#502500",
+                        "on-surface": "#d4e7fe",
+                        "surface-container-low": "#001526",
+                        "on-secondary-fixed": "#003757",
+                        "on-secondary-fixed-variant": "#005582",
+                        "tertiary-fixed": "#c3d9f3",
+                        "surface-container-high": "#052137",
+                        "surface-container-highest": "#09283f",
+                        "tertiary-container": "#c3d9f3",
+                        "background": "#000f1e",
+                        "surface-bright": "#0e2e48",
+                        "secondary-dim": "#5face8",
+                        "on-primary-container": "#3b1a00",
+                        "inverse-primary": "#954b00",
+                        "inverse-on-surface": "#45576a",
+                        "tertiary-fixed-dim": "#b6cbe5",
+                        "error-container": "#b92902",
+                        "secondary-container": "#006497",
+                        "secondary-fixed-dim": "#8bcaff",
+                        "on-tertiary-fixed": "#253a4e",
+                        "on-error-container": "#ffd2c8",
+                        "primary-fixed-dim": "#e57d21",
+                        "error-dim": "#d53d18",
+                        "on-background": "#d4e7fe",
+                        "on-secondary": "#003654",
+                        "tertiary-dim": "#b6cbe5",
+                        "on-primary": "#4c2300",
+                        "on-surface-variant": "#9aadc3",
+                        "primary": "#ff9238",
+                        "inverse-surface": "#f7f9ff",
+                        "surface-variant": "#09283f",
+                        "tertiary": "#d4e7ff",
+                        "error": "#ff7351",
+                        "on-tertiary-fixed-variant": "#41566c",
+                        "on-primary-fixed": "#0f0400",
+                        "surface-container-lowest": "#000000",
+                        "outline-variant": "#384a5c",
+                        "on-secondary-container": "#f4f8ff",
+                        "outline": "#65778b",
+                        "primary-fixed": "#f68a2f",
+                        "surface-dim": "#000f1e",
+                        "primary-dim": "#ec8327",
+                        "surface-container": "#021b2f",
+                        "surface": "#000f1e",
+                        "on-error": "#450900",
+                        "primary-container": "#ef8529",
+                        "secondary-fixed": "#aad6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #000f1e; color: #d4e7fe; }
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="overflow-hidden h-screen flex">
+<!-- SideNavBar -->
+<nav class="flex flex-col fixed left-0 top-0 h-full z-40 bg-[#000f1e] h-screen w-64 border-r border-white/5 font-['Inter'] text-sm font-medium">
+<div class="p-6">
+<h1 class="text-lg font-black text-orange-500 tracking-tighter">Vulcanizadora Nando</h1>
+<p class="text-slate-500 text-xs mt-1 uppercase tracking-widest font-bold">Precision Workshop</p>
+</div>
+<div class="flex-1 space-y-1 mt-4">
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="bg-white/5 text-orange-500 border-l-4 border-orange-500 px-4 py-3 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="point_of_sale">point_of_sale</span>
+<span>POS</span>
+</a>
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span>CRM</span>
+</a>
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span>Reports</span>
+</a>
+</div>
+<div class="p-4 border-t border-white/5">
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 flex flex-1 overflow-hidden">
+<!-- Product Selection (Left) -->
+<section class="flex-1 flex flex-col h-full bg-surface">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-6 w-full sticky top-0 z-50 h-16 border-b border-white/10 bg-[#000f1e]/50 backdrop-blur-md shadow-lg shadow-black/20 font-['Space_Grotesk'] tracking-tight">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative max-w-md w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
+<input class="w-full bg-surface-container-lowest border-0 pl-10 pr-4 py-2 text-sm text-on-surface focus:ring-1 focus:ring-primary rounded-lg" placeholder="Search tire brand, size, or SKU..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-container-high px-4 py-2 rounded-lg text-xs font-bold border border-outline-variant/15 text-on-surface-variant hover:text-primary transition-colors">
+                            All Brands
+                        </button>
+<button class="bg-surface-container-high px-4 py-2 rounded-lg text-xs font-bold border border-outline-variant/15 text-on-surface-variant hover:text-primary transition-colors">
+                            Passenger
+                        </button>
+<button class="bg-surface-container-high px-4 py-2 rounded-lg text-xs font-bold border border-outline-variant/15 text-on-surface-variant hover:text-primary transition-colors">
+                            SUV/4x4
+                        </button>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-4">
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-slate-800">
+<img alt="User Profile" data-alt="portrait of a focused mechanic in a dark workshop environment, cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvU030zUb0EPQ-OVV0h3r_W_6nCL7XyqhjA-sj1BbZDo8uoC48O6CQLDiF8Wj3sEy-qnA1Kkwhir2PqVXXjlpptwdlhn43UfeJ5WTIRNQ1HCZ8OeK9cwsyrWW9_SaCFs6GZXrJE-fUqFJ5ETN6zD2nKZY-y8sMYo0Mj8TF1HAHntl2EQ30xuuLsOKub5r4n4uevAWweMK-nfa7L4uCegtEonPI_iIgz8H75cLqBuqG_04RK-rFiECNEGLUkHjsV6oEUuzyBX3jX_U"/>
+</div>
+</div>
+</header>
+<!-- Product Grid -->
+<div class="flex-1 overflow-y-auto p-6 scrollbar-hide">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Product Card -->
+<div class="group bg-surface-container-low p-4 rounded-xl transition-all hover:bg-surface-container-high cursor-pointer relative">
+<div class="aspect-square rounded-lg bg-surface-container-lowest mb-4 overflow-hidden flex items-center justify-center border border-outline-variant/10">
+<img alt="Performance Tire" class="w-4/5 h-4/5 object-contain group-hover:scale-105 transition-transform" data-alt="professional product shot of a high-performance sports car tire on a dark background with blue lighting accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp0KzQ7GUfHnZ-DMXwWvuIQugTyRyJ_uTxiG14X0g2n1hLgNMpretk6gofFEsptgLMPTBpXoEmm8cDu_6nwIyGsWWVRroinsM3GJTcf4gUylyU5opU3QXA4mFLR_44vGyQo6Z8IKOFx0YAyJt1YCB5t1c5i4UZk_9PyWWQI8eEFrjWU-cT_CdO8RupzwxMc7_xTDA84i4j-N2bt0QdhTs9WEDegj8qvjco2jzzCrFofjNkdjxKYwqEG44MplKQPEEL77idEArsJaA"/>
+</div>
+<span class="text-[10px] uppercase font-bold tracking-widest text-secondary mb-1 block">Bridgestone</span>
+<h3 class="text-on-surface font-headline font-bold text-lg leading-tight mb-2">Potenza Sport 245/40R18</h3>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-on-surface-variant text-[10px] uppercase tracking-tighter">Availability</p>
+<span class="bg-secondary-container/20 text-secondary text-[10px] px-2 py-0.5 rounded-full font-bold">12 In Stock</span>
+</div>
+<div class="text-right">
+<p class="text-primary font-headline font-bold text-xl">$189.50</p>
+</div>
+</div>
+</div>
+<!-- Product Card -->
+<div class="group bg-surface-container-low p-4 rounded-xl transition-all hover:bg-surface-container-high cursor-pointer relative">
+<div class="aspect-square rounded-lg bg-surface-container-lowest mb-4 overflow-hidden flex items-center justify-center border border-outline-variant/10">
+<img alt="Rugged Tire" class="w-4/5 h-4/5 object-contain group-hover:scale-105 transition-transform" data-alt="close up shot of a rugged all-terrain tire with deep tread patterns and mud textures, moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuqkT5Ft8WjKyOywv2aXUa4mWBWpQjcgofEKPDqzUCi0foMUqN_Y6UirEN8jVm3d_qwfyVoeD0y_fNN51JcAdAKxwraaRiToNEhMJQdzrGNN7ag7apDMjBcR0SgT6_vpEECi0YVZNF8Q5ZkDcSkIdxiu_6fm_dHwrU8v0eEsHOnCT1176bJ-JfZUTzksS8MtUaG_U9wizQN327K7LRoJHAlYVNxqcYp3UyjKSxqiXj1JKtmp0CM8iOYgx-zeAeQ39dYzttLfEc460"/>
+</div>
+<span class="text-[10px] uppercase font-bold tracking-widest text-secondary mb-1 block">Michelin</span>
+<h3 class="text-on-surface font-headline font-bold text-lg leading-tight mb-2">CrossClimate 2 225/55R17</h3>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-on-surface-variant text-[10px] uppercase tracking-tighter">Availability</p>
+<span class="bg-secondary-container/20 text-secondary text-[10px] px-2 py-0.5 rounded-full font-bold">8 In Stock</span>
+</div>
+<div class="text-right">
+<p class="text-primary font-headline font-bold text-xl">$215.00</p>
+</div>
+</div>
+</div>
+<!-- Product Card -->
+<div class="group bg-surface-container-low p-4 rounded-xl transition-all hover:bg-surface-container-high cursor-pointer relative border-l-4 border-primary">
+<div class="aspect-square rounded-lg bg-surface-container-lowest mb-4 overflow-hidden flex items-center justify-center border border-outline-variant/10">
+<img alt="Commercial Tire" class="w-4/5 h-4/5 object-contain group-hover:scale-105 transition-transform" data-alt="industrial heavy duty truck tire isolated on dark grey surface with sharp rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNGf9tqXZrCFPp4ehSwpXDro9-z6v3inbrcq__cu5iozU788TCKmMHgYGrtE_SdckahlYDqBpIbyl1KAnBqaeC-P17SFvBxPVHpaH3DBBp0ZLgQRm2SYCJ_xWa-TgJdkmTzLvezqNLZRGnCyWBhonjh-5LPv49w4-YlE9fCFgD0g4I9o3QVeELeof_N1H1AVwiAwNYsAMNYFcUslOmu_Fj5l6S_ouroIhQXJghSAbQDeO2OKbS6s2MJtZL3W5HyaI-kamTSsJtGBA"/>
+</div>
+<span class="text-[10px] uppercase font-bold tracking-widest text-secondary mb-1 block">Pirelli</span>
+<h3 class="text-on-surface font-headline font-bold text-lg leading-tight mb-2">P Zero Winter 255/35R19</h3>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-on-surface-variant text-[10px] uppercase tracking-tighter">Availability</p>
+<span class="bg-error-container/20 text-error text-[10px] px-2 py-0.5 rounded-full font-bold">2 Low Stock</span>
+</div>
+<div class="text-right">
+<p class="text-primary font-headline font-bold text-xl">$320.00</p>
+</div>
+</div>
+</div>
+<!-- Product Card -->
+<div class="group bg-surface-container-low p-4 rounded-xl transition-all hover:bg-surface-container-high cursor-pointer relative">
+<div class="aspect-square rounded-lg bg-surface-container-lowest mb-4 overflow-hidden flex items-center justify-center border border-outline-variant/10">
+<img alt="Continental Tire" class="w-4/5 h-4/5 object-contain group-hover:scale-105 transition-transform" data-alt="side profile of a sleek performance tire with distinct brand lettering, metallic rim visible" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq3mVINFFk3TbBx_PA8QhKwMGiziKHyRZFTE0kkW00gC-7vB4_PwceigRGaJ_Ian6ML60YPx-YAvZ6OskqxNKXzGAoflLz7BBfqrM6jXgkSkSNRoC9_7yf3H2Jh3mHV5md-4KyYoe3IbNOpx6S8f9CWzT_1eVlstEWU8IdwnQWlKaWl-yGPiMfMM2CJebe7ZLqoTvoa4tSCh_SLkbpwNlyQ0GYgkabQayu3aZnSg3pNg-y1_GTR--7euhw1oNyGPCHD3yZvdacd8E"/>
+</div>
+<span class="text-[10px] uppercase font-bold tracking-widest text-secondary mb-1 block">Continental</span>
+<h3 class="text-on-surface font-headline font-bold text-lg leading-tight mb-2">EcoContact 6 205/55R16</h3>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-on-surface-variant text-[10px] uppercase tracking-tighter">Availability</p>
+<span class="bg-secondary-container/20 text-secondary text-[10px] px-2 py-0.5 rounded-full font-bold">24 In Stock</span>
+</div>
+<div class="text-right">
+<p class="text-primary font-headline font-bold text-xl">$145.00</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- POS Checkout (Right) -->
+<aside class="w-[420px] bg-surface-container-low h-full flex flex-col border-l border-white/5 shadow-2xl shadow-black">
+<div class="p-6 border-b border-white/5">
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-xl font-headline font-bold uppercase tracking-tight">Active Sale</h2>
+<span class="text-[10px] font-bold bg-white/5 px-2 py-1 rounded text-slate-400">#48291</span>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-3 flex items-center gap-3 border-l-2 border-primary">
+<span class="material-symbols-outlined text-primary">person</span>
+<div>
+<p class="text-xs font-bold">Guest Customer</p>
+<p class="text-[10px] text-slate-500">Walk-in client</p>
+</div>
+<button class="ml-auto text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+</div>
+</div>
+<!-- Cart Items -->
+<div class="flex-1 overflow-y-auto p-6 space-y-4">
+<!-- Item -->
+<div class="flex gap-4">
+<div class="w-16 h-16 bg-surface-container-lowest rounded border border-outline-variant/15 flex items-center justify-center p-2">
+<img alt="Selected Product" class="w-full h-full object-contain" data-alt="thumbnail of a premium tire on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT_GFp2CPj3uc-Feg5NOaZSs-96sH8cCNfdSumLcLegZhmP-5ZvpxMTfuF-L8l8jo_pcX64fvUahl0Efa9H8M46zgw2a6xs9Nq_l-Vj2mwFV0Dg5yfFw_BelnRZnaR-SxIkhK-wnX78uMC7iDJ6a1EcLk17-AlAOThPE3HSsEBShpYhsZD7zYsntEN-5P8L3LIeMZOvHWCfKuI7RgbIOfcptCeVDj12gG8WKIMs5eRVSR_gBDAZSL92Gal5bdCbll2pls-1NZwWRo"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<h4 class="text-sm font-bold truncate pr-2">Bridgestone Potenza Sport</h4>
+<p class="text-sm font-headline font-bold">$758.00</p>
+</div>
+<p class="text-[10px] text-slate-500 mb-2">Qty: 4 × $189.50</p>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container-highest rounded px-2 gap-3 border border-outline-variant/10">
+<button class="text-slate-400 hover:text-white"><span class="material-symbols-outlined text-sm">remove</span></button>
+<span class="text-xs font-bold w-4 text-center">4</span>
+<button class="text-slate-400 hover:text-white"><span class="material-symbols-outlined text-sm">add</span></button>
+</div>
+<button class="text-error text-xs hover:underline uppercase font-bold tracking-tighter opacity-70">Remove</button>
+</div>
+</div>
+</div>
+<!-- Item -->
+<div class="flex gap-4">
+<div class="w-16 h-16 bg-surface-container-lowest rounded border border-outline-variant/15 flex items-center justify-center p-2">
+<img alt="Selected Product" class="w-full h-full object-contain" data-alt="thumbnail of an eco-friendly tire on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzVP7MSrUU3lppGqa3NEF-kCl28gc9f99x7ChNkrhJcwL9S4xLVg5L7wwSkRjSOuAbQUx5LoYwelSmvnOA5y2W-HjXnfuCE36MSSlPomlgFMkL4zrLzg7MRtcax1yW6e92J0QA1zau6c9ihDgl5-RIRiaphvwIqBrQtPHjtNvjoHwcbGD9NmcoNcRaQ6zcHEplDCK3Vr0_L7xZ5N1757uOoCAkdzuUjkFtHDSFm246L2QrjgIIwor2keXQ8KpM-X1a4wUGWRwdfWM"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<h4 class="text-sm font-bold truncate pr-2">Continental EcoContact 6</h4>
+<p class="text-sm font-headline font-bold">$145.00</p>
+</div>
+<p class="text-[10px] text-slate-500 mb-2">Qty: 1 × $145.00 (Spare)</p>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container-highest rounded px-2 gap-3 border border-outline-variant/10">
+<button class="text-slate-400 hover:text-white"><span class="material-symbols-outlined text-sm">remove</span></button>
+<span class="text-xs font-bold w-4 text-center">1</span>
+<button class="text-slate-400 hover:text-white"><span class="material-symbols-outlined text-sm">add</span></button>
+</div>
+<button class="text-error text-xs hover:underline uppercase font-bold tracking-tighter opacity-70">Remove</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Totals & Payment -->
+<div class="p-6 bg-surface-container-high border-t border-white/10">
+<div class="space-y-2 mb-6">
+<div class="flex justify-between text-on-surface-variant text-xs">
+<span>Subtotal</span>
+<span class="font-bold text-on-surface">$903.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant text-xs">
+<span>Installation Fee</span>
+<span class="font-bold text-on-surface">$40.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant text-xs">
+<span>Tax (8%)</span>
+<span class="font-bold text-on-surface">$72.24</span>
+</div>
+<div class="flex justify-between items-end pt-2 mt-2 border-t border-outline-variant/10">
+<span class="text-sm uppercase font-black text-primary tracking-widest">Total Amount</span>
+<span class="text-3xl font-headline font-bold">$1,015.24</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mb-4">
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border border-outline-variant/20 hover:border-secondary transition-all group">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-secondary mb-1">payments</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Cash</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 rounded-lg border-2 border-secondary bg-secondary/5 transition-all group">
+<span class="material-symbols-outlined text-secondary mb-1">credit_card</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter text-secondary">Card</span>
+</button>
+</div>
+<button class="w-full bg-primary hover:bg-primary-fixed-dim text-on-primary-container font-headline font-black text-lg py-4 rounded-lg flex items-center justify-center gap-3 active:scale-95 transition-all shadow-xl shadow-primary/10 uppercase tracking-tighter">
+                    Process Payment
+                    <span class="material-symbols-outlined">point_of_sale</span>
+</button>
+</div>
+</aside>
+</main>
+<!-- Contextual FAB (Only for specific screen purpose) -->
+<button class="fixed bottom-8 right-[440px] w-14 h-14 bg-secondary text-on-secondary rounded-full flex items-center justify-center shadow-2xl hover:scale-105 active:scale-90 transition-all z-50">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+</button>
+</body></html>

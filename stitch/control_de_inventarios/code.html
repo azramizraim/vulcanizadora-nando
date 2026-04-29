@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inventory | Vulcanizadora Nando</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#6ebaf7",
+                    "surface-tint": "#ff9238",
+                    "on-tertiary-container": "#384d62",
+                    "on-tertiary": "#40556b",
+                    "on-primary-fixed-variant": "#502500",
+                    "on-surface": "#d4e7fe",
+                    "surface-container-low": "#001526",
+                    "on-secondary-fixed": "#003757",
+                    "on-secondary-fixed-variant": "#005582",
+                    "tertiary-fixed": "#c3d9f3",
+                    "surface-container-high": "#052137",
+                    "surface-container-highest": "#09283f",
+                    "tertiary-container": "#c3d9f3",
+                    "background": "#000f1e",
+                    "surface-bright": "#0e2e48",
+                    "secondary-dim": "#5face8",
+                    "on-primary-container": "#3b1a00",
+                    "inverse-primary": "#954b00",
+                    "inverse-on-surface": "#45576a",
+                    "tertiary-fixed-dim": "#b6cbe5",
+                    "error-container": "#b92902",
+                    "secondary-container": "#006497",
+                    "secondary-fixed-dim": "#8bcaff",
+                    "on-tertiary-fixed": "#253a4e",
+                    "on-error-container": "#ffd2c8",
+                    "primary-fixed-dim": "#e57d21",
+                    "error-dim": "#d53d18",
+                    "on-background": "#d4e7fe",
+                    "on-secondary": "#003654",
+                    "tertiary-dim": "#b6cbe5",
+                    "on-primary": "#4c2300",
+                    "on-surface-variant": "#9aadc3",
+                    "primary": "#ff9238",
+                    "inverse-surface": "#f7f9ff",
+                    "surface-variant": "#09283f",
+                    "tertiary": "#d4e7ff",
+                    "error": "#ff7351",
+                    "on-tertiary-fixed-variant": "#41566c",
+                    "on-primary-fixed": "#0f0400",
+                    "surface-container-lowest": "#000000",
+                    "outline-variant": "#384a5c",
+                    "on-secondary-container": "#f4f8ff",
+                    "outline": "#65778b",
+                    "primary-fixed": "#f68a2f",
+                    "surface-dim": "#000f1e",
+                    "primary-dim": "#ec8327",
+                    "surface-container": "#021b2f",
+                    "surface": "#000f1e",
+                    "on-error": "#450900",
+                    "primary-container": "#ef8529",
+                    "secondary-fixed": "#aad6ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #000f1e; color: #d4e7fe; }
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="overflow-hidden">
+<!-- SideNavBar -->
+<aside class="flex flex-col fixed left-0 top-0 h-full z-40 h-screen w-64 border-r border-white/5 bg-[#000f1e]">
+<div class="p-6">
+<div class="text-lg font-black text-orange-500 uppercase tracking-tighter">Vulcanizadora Nando</div>
+<div class="font-['Inter'] text-sm font-medium text-slate-400 mt-1">Precision Workshop</div>
+</div>
+<nav class="flex-1 px-2 space-y-1 mt-4">
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">point_of_sale</span> POS
+            </a>
+<!-- Inventory is Active -->
+<a class="bg-white/5 text-orange-500 border-l-4 border-orange-500 px-4 py-3 flex items-center gap-3 font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">inventory_2</span> Inventory
+            </a>
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">groups</span> CRM
+            </a>
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">assessment</span> Reports
+            </a>
+</nav>
+<div class="p-4 border-t border-white/5">
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+            </a>
+</div>
+</aside>
+<div class="ml-64 flex flex-col h-screen">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-6 w-full sticky top-0 z-50 bg-[#000f1e] h-16 border-b border-white/10 tonal shift bg-slate-900/50 backdrop-blur-md shadow-lg shadow-black/20">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="bg-surface-container-lowest w-full pl-10 pr-4 py-1.5 rounded-lg border-0 focus:ring-0 focus:border-l-2 focus:border-primary text-sm text-on-surface placeholder-slate-500" placeholder="Search inventory..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-orange-500/30">
+<img alt="Profile" data-alt="portrait of a professional mechanic in his 40s with a friendly expression, soft workshop lighting in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6SMOgTRc6TU5RnZ0Suz1JS8QXGLhS8GxVBL-q7AtNGA1HPdQs1gaVWIpMBasww74-cfizWP3YxiffENdohuW9Lw-fP4psPYa0eVtQrKKUlr9pB1W3-3xZOsq3NpM_M670tN8auv9XeONlLGrO3j4o3t7l1QndpQNPWXwmi-2beyZLv16S6IYtLbukMGlWJBdih1iduAtPRhqWHrAG_iG7ODgVETqblLP5YQdl_GXX8kaQh3320MO78SsaXeSge2bU_lCdPcwKzCs"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto p-8 bg-surface">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div>
+<h1 class="text-5xl font-bold tracking-tighter text-on-surface mb-2 uppercase">Inventory</h1>
+<p class="text-on-surface-variant font-medium">Manage workshop stock and tire variants with industrial precision.</p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-6 py-3 border border-outline-variant hover:bg-white/5 transition-all rounded-md font-bold text-sm uppercase tracking-widest text-on-surface">
+<span class="material-symbols-outlined text-lg">download</span>
+                        Export Inventory
+                    </button>
+<button class="flex items-center gap-2 px-6 py-3 bg-primary text-on-primary font-bold rounded-md hover:bg-primary-dim transition-all text-sm uppercase tracking-widest shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+                        Add New Item
+                    </button>
+</div>
+</div>
+<!-- Dashboard Stats Grid (Asymmetric) -->
+<div class="grid grid-cols-12 gap-6 mb-12">
+<div class="col-span-12 lg:col-span-8 bg-surface-container-low rounded-xl p-8 border-l-4 border-primary">
+<div class="flex justify-between items-start">
+<div>
+<span class="text-xs font-bold text-primary uppercase tracking-[0.2em] mb-4 block">Stock Overview</span>
+<h2 class="text-7xl font-bold tracking-tighter text-on-surface">1,482</h2>
+<p class="text-on-surface-variant mt-2">Total Units in Stock</p>
+</div>
+<div class="text-right">
+<span class="text-secondary font-bold text-3xl block">+12%</span>
+<span class="text-xs text-on-surface-variant uppercase tracking-widest">vs Last Month</span>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 bg-surface-container-high rounded-xl p-8 flex flex-col justify-between">
+<div>
+<span class="text-xs font-bold text-error uppercase tracking-[0.2em] mb-4 block">Low Stock Alert</span>
+<h2 class="text-4xl font-bold tracking-tighter text-on-surface">24</h2>
+<p class="text-on-surface-variant mt-1">Items below threshold</p>
+</div>
+<a class="text-primary text-sm font-bold underline decoration-primary/30 hover:decoration-primary mt-4" href="#">Review Critical Items →</a>
+</div>
+</div>
+<!-- Inventory Table Section -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden border border-white/5">
+<div class="p-6 bg-surface-container-high/50 flex justify-between items-center">
+<h3 class="text-xl font-bold text-on-surface uppercase tracking-tight">Active Stock List</h3>
+<div class="flex gap-2">
+<button class="p-2 rounded hover:bg-white/5 text-slate-400"><span class="material-symbols-outlined">filter_list</span></button>
+<button class="p-2 rounded hover:bg-white/5 text-slate-400"><span class="material-symbols-outlined">grid_view</span></button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="bg-surface-container-highest/50 border-b border-white/5">
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Tire Brand</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Model</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Size</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Stock</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest text-right">Price</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center font-bold text-primary">M</div>
+<span class="font-bold text-on-surface">Michelin</span>
+</div>
+</td>
+<td class="px-6 py-5 text-on-surface-variant">Pilot Sport 4S</td>
+<td class="px-6 py-5 font-mono text-sm">245/40 R18</td>
+<td class="px-6 py-5 text-on-surface font-medium">42</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-secondary-container/20 text-secondary text-[10px] font-bold uppercase tracking-widest rounded-full border border-secondary-container/30">In Stock</span>
+</td>
+<td class="px-6 py-5 text-right font-bold text-on-surface">$285.00</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center font-bold text-primary">B</div>
+<span class="font-bold text-on-surface">Bridgestone</span>
+</div>
+</td>
+<td class="px-6 py-5 text-on-surface-variant">Potenza RE050A</td>
+<td class="px-6 py-5 font-mono text-sm">225/45 R17</td>
+<td class="px-6 py-5 text-on-surface font-medium text-error">4</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-error-container/20 text-error text-[10px] font-bold uppercase tracking-widest rounded-full border border-error-container/30">Low Stock</span>
+</td>
+<td class="px-6 py-5 text-right font-bold text-on-surface">$195.00</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center font-bold text-primary">P</div>
+<span class="font-bold text-on-surface">Pirelli</span>
+</div>
+</td>
+<td class="px-6 py-5 text-on-surface-variant">P Zero</td>
+<td class="px-6 py-5 font-mono text-sm">275/35 R19</td>
+<td class="px-6 py-5 text-on-surface font-medium">18</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-secondary-container/20 text-secondary text-[10px] font-bold uppercase tracking-widest rounded-full border border-secondary-container/30">In Stock</span>
+</td>
+<td class="px-6 py-5 text-right font-bold text-on-surface">$340.00</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center font-bold text-primary">C</div>
+<span class="font-bold text-on-surface">Continental</span>
+</div>
+</td>
+<td class="px-6 py-5 text-on-surface-variant">ExtremeContact DWS</td>
+<td class="px-6 py-5 font-mono text-sm">215/55 R16</td>
+<td class="px-6 py-5 text-on-surface font-medium text-error-dim">2</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-error-container/20 text-error text-[10px] font-bold uppercase tracking-widest rounded-full border border-error-container/30">Critical</span>
+</td>
+<td class="px-6 py-5 text-right font-bold text-on-surface">$165.00</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center font-bold text-primary">G</div>
+<span class="font-bold text-on-surface">Goodyear</span>
+</div>
+</td>
+<td class="px-6 py-5 text-on-surface-variant">Eagle F1 Asymmetric</td>
+<td class="px-6 py-5 font-mono text-sm">255/35 R20</td>
+<td class="px-6 py-5 text-on-surface font-medium">12</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-secondary-container/20 text-secondary text-[10px] font-bold uppercase tracking-widest rounded-full border border-secondary-container/30">In Stock</span>
+</td>
+<td class="px-6 py-5 text-right font-bold text-on-surface">$410.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 bg-surface-container-low flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Showing 5 of 142 products</span>
+<div class="flex gap-1">
+<button class="px-3 py-1 rounded border border-white/5 hover:bg-white/5 disabled:opacity-30" disabled="">Previous</button>
+<button class="px-3 py-1 rounded bg-primary/10 text-primary border border-primary/20">1</button>
+<button class="px-3 py-1 rounded border border-white/5 hover:bg-white/5">2</button>
+<button class="px-3 py-1 rounded border border-white/5 hover:bg-white/5">3</button>
+<button class="px-3 py-1 rounded border border-white/5 hover:bg-white/5">Next</button>
+</div>
+</div>
+</div>
+<!-- Inventory Insights Cards (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+<div class="bg-surface-container-low p-6 rounded-xl border border-white/5">
+<span class="material-symbols-outlined text-secondary mb-4">trending_up</span>
+<h4 class="font-bold uppercase tracking-tight text-on-surface">Top Performer</h4>
+<p class="text-on-surface-variant text-sm mt-1">Michelin Pilot Sport 4S accounts for 24% of sales this month.</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-white/5">
+<span class="material-symbols-outlined text-primary mb-4">inventory</span>
+<h4 class="font-bold uppercase tracking-tight text-on-surface">Stock Valuation</h4>
+<p class="text-on-surface-variant text-sm mt-1">Current total inventory estimated at $142,500 market value.</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-white/5">
+<span class="material-symbols-outlined text-tertiary mb-4">schedule</span>
+<h4 class="font-bold uppercase tracking-tight text-on-surface">Restock Queue</h4>
+<p class="text-on-surface-variant text-sm mt-1">3 major shipments from Bridgestone arriving in 48 hours.</p>
+</div>
+</div>
+</main>
+</div>
+</body></html>

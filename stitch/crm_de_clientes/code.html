@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CRM Dashboard | Vulcanizadora Nando</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#6ebaf7",
+                      "surface-tint": "#ff9238",
+                      "on-tertiary-container": "#384d62",
+                      "on-tertiary": "#40556b",
+                      "on-primary-fixed-variant": "#502500",
+                      "on-surface": "#d4e7fe",
+                      "surface-container-low": "#001526",
+                      "on-secondary-fixed": "#003757",
+                      "on-secondary-fixed-variant": "#005582",
+                      "tertiary-fixed": "#c3d9f3",
+                      "surface-container-high": "#052137",
+                      "surface-container-highest": "#09283f",
+                      "tertiary-container": "#c3d9f3",
+                      "background": "#000f1e",
+                      "surface-bright": "#0e2e48",
+                      "secondary-dim": "#5face8",
+                      "on-primary-container": "#3b1a00",
+                      "inverse-primary": "#954b00",
+                      "inverse-on-surface": "#45576a",
+                      "tertiary-fixed-dim": "#b6cbe5",
+                      "error-container": "#b92902",
+                      "secondary-container": "#006497",
+                      "secondary-fixed-dim": "#8bcaff",
+                      "on-tertiary-fixed": "#253a4e",
+                      "on-error-container": "#ffd2c8",
+                      "primary-fixed-dim": "#e57d21",
+                      "error-dim": "#d53d18",
+                      "on-background": "#d4e7fe",
+                      "on-secondary": "#003654",
+                      "tertiary-dim": "#b6cbe5",
+                      "on-primary": "#4c2300",
+                      "on-surface-variant": "#9aadc3",
+                      "primary": "#ff9238",
+                      "inverse-surface": "#f7f9ff",
+                      "surface-variant": "#09283f",
+                      "tertiary": "#d4e7ff",
+                      "error": "#ff7351",
+                      "on-tertiary-fixed-variant": "#41566c",
+                      "on-primary-fixed": "#0f0400",
+                      "surface-container-lowest": "#000000",
+                      "outline-variant": "#384a5c",
+                      "on-secondary-container": "#f4f8ff",
+                      "outline": "#65778b",
+                      "primary-fixed": "#f68a2f",
+                      "surface-dim": "#000f1e",
+                      "primary-dim": "#ec8327",
+                      "surface-container": "#021b2f",
+                      "surface": "#000f1e",
+                      "on-error": "#450900",
+                      "primary-container": "#ef8529",
+                      "secondary-fixed": "#aad6ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Space Grotesk"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000f1e;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #000f1e;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #384a5c;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<aside class="flex flex-col fixed left-0 top-0 h-full z-40 bg-[#000f1e] h-screen w-64 border-r border-white/5 font-['Inter'] text-sm font-medium">
+<div class="p-6">
+<h1 class="text-lg font-black text-orange-500">Vulcanizadora Nando</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-slate-500 mt-1">Precision Workshop</p>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">point_of_sale</span>
+                POS
+            </a>
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Inventory
+            </a>
+<a class="bg-white/5 text-orange-500 border-l-4 border-orange-500 px-4 py-3 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">groups</span>
+                CRM
+            </a>
+<a class="text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">assessment</span>
+                Reports
+            </a>
+</nav>
+<div class="p-4 mt-auto border-t border-white/5">
+<button class="w-full text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </button>
+</div>
+</aside>
+<main class="ml-64 min-h-screen">
+<header class="flex items-center justify-between px-6 w-full sticky top-0 z-50 bg-[#000f1e] h-16 border-b border-white/10 tonal shift bg-slate-900/50 backdrop-blur-md shadow-lg shadow-black/20">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full bg-surface-container-lowest border-none pl-10 py-2 text-sm focus:ring-0 focus:border-l-2 focus:border-orange-500 rounded-none transition-all placeholder:text-slate-500" placeholder="Search customers, vehicles, or invoices..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-6">
+<button class="text-slate-400 hover:text-white transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full border-2 border-[#000f1e]"></span>
+</button>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-white/10 ml-2">
+<img alt="Profile" data-alt="professional portrait of a workshop manager in a clean uniform, high-end studio lighting, sharp focus, technical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-WfdNxC8WhtEf9Ftp3WWRQh__St4DmZ26aN1UFvQIDXqn_G-pkMjggqxF9sF5TSDvJqaRXbsIgofjMRIO7q2BJuDcKIPvPULlTfn8D-heEHRMk5NE7GWpn0Mp6pM-vmu4Ud1jiu9cQcdMucFxNqFy-y_Jt7pk5EiqrwmN44VcgHvsCsuep_SlnGv25MYO6WZO-fyNOr8VR_cBrBA2k7I5e1u3MIqvJ1BNrqUo3LAEsB13HxNb-F5w6J2Scg2AMrFVrcSeJY1wNU0"/>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="text-4xl font-bold tracking-tight font-headline">Customer Relationship Management</h2>
+<p class="text-on-surface-variant mt-2 max-w-lg">Monitor client loyalty, service history, and lifetime value in one unified workshop interface.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 bg-surface-container-high text-on-surface font-medium hover:bg-surface-container-highest transition-colors flex items-center gap-2 rounded-lg">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export Report
+                    </button>
+<button class="px-6 py-2.5 bg-primary text-on-primary font-bold hover:bg-primary-fixed-dim transition-colors flex items-center gap-2 rounded-lg">
+<span class="material-symbols-outlined text-sm">person_add</span>
+                        New Customer
+                    </button>
+</div>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-low p-6 rounded-xl border-l-2 border-orange-500/30">
+<p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold">Total Clients</p>
+<h3 class="text-3xl font-headline font-bold mt-2">1,284</h3>
+<div class="mt-2 text-xs text-secondary-dim flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +12% this month
+                    </div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border-l-2 border-secondary/30">
+<p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold">Average Spend</p>
+<h3 class="text-3xl font-headline font-bold mt-2">$242.50</h3>
+<div class="mt-2 text-xs text-secondary-dim flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">arrow_upward</span> +4% vs last Q
+                    </div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl">
+<p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold">Active Services</p>
+<h3 class="text-3xl font-headline font-bold mt-2">48</h3>
+<p class="mt-2 text-xs text-on-surface-variant">Ongoing repairs today</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl">
+<p class="text-xs uppercase tracking-widest text-on-surface-variant font-bold">Retention Rate</p>
+<h3 class="text-3xl font-headline font-bold mt-2">78.2%</h3>
+<p class="mt-2 text-xs text-on-surface-variant">Returning customers</p>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+<div class="lg:col-span-2 bg-surface-container-low rounded-xl overflow-hidden">
+<div class="px-6 py-5 flex items-center justify-between border-b border-white/5">
+<h4 class="font-headline font-bold text-lg">Customer Directory</h4>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-white/5 rounded text-on-surface-variant">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 hover:bg-white/5 rounded text-on-surface-variant">
+<span class="material-symbols-outlined">sort</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[10px] uppercase tracking-widest text-on-surface-variant">
+<th class="px-6 py-4 font-black">Customer</th>
+<th class="px-6 py-4 font-black">Contact Details</th>
+<th class="px-6 py-4 font-black">Last Visit</th>
+<th class="px-6 py-4 font-black text-right">Total Spend</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="hover:bg-white/[0.03] cursor-pointer group transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center text-primary font-bold">RD</div>
+<div>
+<div class="font-bold text-sm">Ricardo Delgado</div>
+<div class="text-[10px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">directions_car</span> Toyota Hilux 2022
+                                                </div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-xs">ricardo.d@example.com</div>
+<div class="text-xs text-on-surface-variant">+52 555-123-4567</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-xs">Oct 12, 2023</div>
+<div class="text-[10px] text-secondary">Tire Rotation</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-sm font-bold font-headline">$1,250.00</div>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.03] cursor-pointer group transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center text-primary font-bold">MP</div>
+<div>
+<div class="font-bold text-sm">Maria Perez</div>
+<div class="text-[10px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">directions_car</span> Ford Raptor 2021
+                                                </div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-xs">m.perez@domain.mx</div>
+<div class="text-xs text-on-surface-variant">+52 555-987-6543</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-xs">Nov 03, 2023</div>
+<div class="text-[10px] text-secondary">Emergency Repair</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-sm font-bold font-headline">$845.00</div>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.03] cursor-pointer group transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center text-primary font-bold">AS</div>
+<div>
+<div class="font-bold text-sm">Arturo Sanchez</div>
+<div class="text-[10px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">directions_car</span> Chevy Silverado
+                                                </div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-xs">arturo.s@logistics.com</div>
+<div class="text-xs text-on-surface-variant">+52 555-321-0987</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-xs">Nov 14, 2023</div>
+<div class="text-[10px] text-secondary">Full Alignment</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-sm font-bold font-headline">$4,120.00</div>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.03] cursor-pointer group transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center text-primary font-bold">LC</div>
+<div>
+<div class="font-bold text-sm">Lucia Castro</div>
+<div class="text-[10px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">directions_car</span> Tesla Model Y
+                                                </div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-xs">lucia.castro@web.com</div>
+<div class="text-xs text-on-surface-variant">+52 555-555-0000</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-xs">Yesterday</div>
+<div class="text-[10px] text-secondary">Balance &amp; Rotation</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="text-sm font-bold font-headline">$320.00</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-white/5 flex items-center justify-between">
+<span class="text-xs text-on-surface-variant">Showing 4 of 1,284 customers</span>
+<div class="flex gap-2">
+<button class="p-1 px-3 border border-white/10 text-xs hover:bg-white/5">Previous</button>
+<button class="p-1 px-3 border border-white/10 text-xs bg-white/10">Next</button>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="bg-surface-container-high rounded-xl p-6 border-t-4 border-primary">
+<div class="flex justify-between items-start">
+<h4 class="font-headline font-bold text-lg">Detailed Profile</h4>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full font-bold">LOYALTY LVL 3</span>
+</div>
+<div class="mt-6 flex flex-col items-center text-center">
+<div class="w-24 h-24 rounded-2xl bg-surface-container-highest border border-white/10 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-4xl text-primary">person</span>
+</div>
+<h5 class="text-xl font-bold font-headline">Ricardo Delgado</h5>
+<p class="text-on-surface-variant text-sm">Customer since June 2019</p>
+</div>
+<div class="mt-8 space-y-4">
+<div class="p-4 bg-surface-container-lowest rounded-lg border-l-2 border-secondary">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant">Active Vehicle</p>
+<p class="text-sm mt-1 font-medium">Toyota Hilux 4x4 (Black)</p>
+<p class="text-[10px] text-on-surface-variant">Plate: ABC-1234-MEX</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container-lowest rounded-lg">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant">Total Visits</p>
+<p class="text-lg font-headline font-bold">14</p>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-lg">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant">Last Service</p>
+<p class="text-lg font-headline font-bold">$125</p>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h6 class="text-[10px] uppercase font-black text-on-surface-variant tracking-[0.2em] mb-4">Purchase History</h6>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-white/5 rounded text-orange-500">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+</div>
+<div>
+<div class="text-xs font-bold">4x Michelin LTX Force</div>
+<div class="text-[10px] text-on-surface-variant">May 14, 2023</div>
+</div>
+</div>
+<div class="text-xs font-bold">$840</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-white/5 rounded text-orange-500">
+<span class="material-symbols-outlined text-sm">build</span>
+</div>
+<div>
+<div class="text-xs font-bold">Alignment &amp; Balance</div>
+<div class="text-[10px] text-on-surface-variant">May 15, 2023</div>
+</div>
+</div>
+<div class="text-xs font-bold">$120</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 border border-primary text-primary font-bold text-sm hover:bg-primary hover:text-on-primary transition-all rounded-lg">
+                            Create New Invoice
+                        </button>
+</div>
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<div class="relative h-32 w-full">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent z-10"></div>
+<img alt="Workshop Location" class="w-full h-full object-cover grayscale opacity-50" data-alt="interior of a high-tech modern automotive workshop with organized tools, industrial lighting, and clean steel surfaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPcrTpkQuf1UismiB6IgD6w4b7XU6jWQ2-IgQMqTbqlU6ZtRjg1pG-j2cajvVBpum7yx2kalUCEHXmy8rIz_kRgSYGh1qtTptCdqyZ1RNZP676ROaTiPi0nxqJyUET0hrdVhve0Y6L9T0YPz9jK2O7B4WQEWn3jMRVUMT_Xb8gAjZt6IKvfIJPTElHo6D_UShWxaVK4v6bz6MMzGvxTiFqjNueOcIqffI7QNF1jBueoYbwcg3oxDQL-VSJQzLyj96FimMeyXbal_M"/>
+<div class="absolute bottom-3 left-4 z-20">
+<p class="text-[10px] uppercase font-black tracking-widest text-primary">Service Center</p>
+<h4 class="font-headline font-bold">Main Workshop Nando</h4>
+</div>
+</div>
+<div class="p-4">
+<p class="text-xs text-on-surface-variant">Av. de los Talleres 452, Col. Industrial, Monterrey, NL.</p>
+<div class="mt-4 flex gap-4">
+<button class="flex-1 py-2 bg-surface-container-highest text-[10px] font-bold uppercase tracking-widest rounded">Map Location</button>
+<button class="flex-1 py-2 bg-surface-container-highest text-[10px] font-bold uppercase tracking-widest rounded">Call Direct</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

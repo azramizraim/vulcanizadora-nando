@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-on-background selection:bg-primary/30 selection:text-white;
+  }
+
+  h1, h2, h3, h4, h5, h6, .headline {
+    @apply font-headline;
+  }
+
+  /* Custom scrollbar for industrial feel */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #000f1e;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ff9238;
+  }
+}
+
+@layer components {
+  /* Tonal Layering Utilities from DESIGN.md */
+  .surface-base { @apply bg-surface; }
+  .surface-workbench { @apply bg-surface-container-low; }
+  .surface-tool { @apply bg-surface-container-highest; }
+
+  /* Machined Toggle Buttons */
+  .btn-primary {
+    @apply bg-primary text-on-primary-container font-headline font-bold px-6 py-2 rounded-lg 
+           hover:bg-primary-fixed-dim transition-all active:scale-95 shadow-lg shadow-primary/10;
+  }
+  
+  .btn-tertiary {
+    @apply text-on-surface hover:text-primary transition-all relative after:content-[''] after:absolute 
+           after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full 
+           after:transition-all px-1 py-0.5;
+  }
+
+  /* Industrial Inputs */
+  .input-industrial {
+    @apply bg-surface-container-lowest border-0 border-l-0 focus:border-l-2 focus:border-primary 
+           focus:ring-0 text-sm text-on-surface rounded-lg placeholder:text-slate-600 transition-all;
+  }
+
+  /* Glassmorphism for mods */
+  .glass-modal {
+    @apply bg-surface-variant/60 backdrop-blur-[20px] rounded-xl border border-white/5;
+  }
+}
