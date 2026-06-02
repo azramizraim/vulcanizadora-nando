@@ -252,6 +252,25 @@ function Inventory({ activeBranch, isAdmin }) {
   }, [])
 
   useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpenId(null)
+      }
+    }
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setMenuOpenId(null)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('keydown', handleEscape)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('keydown', handleEscape)
+    }
+  }, [])
+
+  useEffect(() => {
     let active = true
     const loadInventory = async () => {
       try {
