@@ -551,7 +551,9 @@ const openEditModal = (product) => {
 
   if (loading) return <div className="p-20 text-center animate-pulse"><div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>Cargando Inventario...</div>
 
-  const filtered = products.filter(p => (p.name||'').toLowerCase().includes(searchTerm.toLowerCase()) || (p.sku||'').toLowerCase().includes(searchTerm.toLowerCase()))
+  const filtered = products
+    .filter(p => (showPaused || (p.active ?? true)))
+    .filter(p => (p.name||'').toLowerCase().includes(searchTerm.toLowerCase()) || (p.sku||'').toLowerCase().includes(searchTerm.toLowerCase()))
 
   return (
     <div className="p-4 lg:p-8 space-y-6">
@@ -739,6 +741,17 @@ const openEditModal = (product) => {
           <p className="text-slate-400 text-xs">Consulta y Traspasos en <span className="text-primary font-bold">{activeBranch}</span></p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
+          {isAdmin && (
+            <label className="flex items-center gap-2 text-[10px] text-slate-400 uppercase font-black cursor-pointer">
+              <input
+                type="checkbox"
+                checked={showPaused}
+                onChange={e => setShowPaused(e.target.checked)}
+                className="accent-primary w-4 h-4"
+              />
+              Mostrar pausados
+            </label>
+          )}
           <input className="input-industrial px-4 py-2 text-xs w-full sm:w-64" placeholder="Buscar llanta o SKU..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
           <button onClick={() => setShowAddModal(true)} className="btn-primary px-6 py-2 text-xs font-black uppercase flex items-center justify-center gap-2">Nuevo <span className="material-symbols-outlined text-[18px]">add</span></button>
             <label className="btn-primary bg-green-600 hover:bg-green-700 px-6 py-2 text-xs font-black uppercase flex items-center justify-center gap-2 cursor-pointer ml-2">
