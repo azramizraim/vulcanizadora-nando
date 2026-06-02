@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { fetchData, postData, updateStock } from '../services/api'
 
-const servicesList = [
-  { id: 'S1', name: 'Reparación de Llanta', price: 150, isService: true, img: 'https://cdn-icons-png.flaticon.com/512/3233/3233513.png' },
-  { id: 'S2', name: 'Balanceo', price: 100, isService: true, img: 'https://cdn-icons-png.flaticon.com/512/575/575308.png' },
-  { id: 'S3', name: 'Parche Frío', price: 80, isService: true, img: 'https://cdn-icons-png.flaticon.com/512/3067/3067451.png' },
-]
-
-function POS({ activeBranch }) {
+function POS({ activeBranch, isAdmin, isVendedor }) {
   const [products, setProducts] = useState([])
+  const [services, setServices] = useState([])
   const [cart, setCart] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [activeTab, setActiveTab] = useState('LLANTAS')
@@ -18,18 +13,31 @@ function POS({ activeBranch }) {
   const [ticket, setTicket] = useState(null)
   const [clients, setClients] = useState([])
   const [includeIva, setIncludeIva] = useState(true)
-
+  
+  // Services management state
+  const [editingService, setEditingService] = useState(null)
+  const [showServiceForm, setShowServiceForm] = useState(false)
+  const [serviceForm, setServiceForm] = useState({
+    name: '',
+    price: '',
+    img: '',
+    isService: true,
+    branch: activeBranch
+  })
+  
   useEffect(() => {
     let active = true
     const loadData = async () => {
       try {
-        const [invData, clientData] = await Promise.all([
+        const [invData, clientData, servicesData] = await Promise.all([
           fetchData('Inventario', activeBranch),
-          fetchData('Clientes', activeBranch)
+          fetchData('Clientes', activeBranch),
+          fetchData('Servicios', activeBranch)
         ])
         if (active) {
-          setProducts(Array.isArray(invData) ? invData : [])
+          setProducts(Array.isArray(invData) ? invData.filter(p => p.active ?? true) : [])
           setClients(Array.isArray(clientData) ? clientData : [])
+          setServices(Array.isArray(servicesData) ? servicesData : [])
         }
       } catch (err) {
         console.error(err)
@@ -63,7 +71,7 @@ function POS({ activeBranch }) {
     
     const saleId = `#VN-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`
     const date = new Date().toLocaleString('es-MX')
-
+    
     const subTotal = cart.reduce((acc, curr) => acc + (parseFloat(curr.price) * curr.qty), 0)
     const tax = includeIva ? subTotal * 0.16 : 0
     const total = subTotal + tax
@@ -93,13 +101,13 @@ function POS({ activeBranch }) {
       if (result.success) {
         for (const item of cart) {
           if (!item.isService) {
-              await updateStock(item.id, item.qty)
+            await updateStock(item.id, item.qty)
           }
         }
         setTicket(saleData)
         setCart([])
         const inv = await fetchData('Inventario', activeBranch)
-        if (Array.isArray(inv)) setProducts(inv)
+        if (Array.isArray(inv)) setProducts(inv.filter(p => p.active ?? true))
       } else {
         alert('Error al guardar la venta')
       }
@@ -114,7 +122,7 @@ function POS({ activeBranch }) {
   const iva = includeIva ? subtotal * 0.16 : 0
   const total = subtotal + iva
 
-  const viewItems = activeTab === 'LLANTAS' ? products : servicesList;
+  const viewItems = activeTab === 'LLANTAS' ? products : services
 
   return (
     <div className="flex flex-col lg:flex-row h-[calc(100vh-4rem)] overflow-hidden">
@@ -125,13 +133,13 @@ function POS({ activeBranch }) {
               <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                   <div className="flex bg-background/60 p-1 rounded-xl border border-white/10">
                     {['LLANTAS', 'SERVICIOS'].map(tab => (
-                        <button 
-                          key={tab}
-                          onClick={() => setActiveTab(tab)}
-                          className={`flex-1 px-5 py-2 rounded-lg text-[11px] font-bold tracking-wider transition-all ${activeTab === tab ? 'bg-primary text-background shadow-lg shadow-primary/25' : 'text-slate-400 hover:text-slate-200'}`}
-                        >
-                          {tab}
-                        </button>
+                          <button 
+                            key={tab}
+                            onClick={() => setActiveTab(tab)}
+                            className={`flex-1 px-5 py-2 rounded-lg text-[11px] font-bold tracking-wider transition-all ${activeTab === tab ? 'bg-primary text-background shadow-lg shadow-primary/25' : 'text-slate-400 hover:text-slate-200'}`}
+                          >
+                            {tab}
+                          </button>
                     ))}
                   </div>
                   <div className="relative flex-1 max-w-md w-full">
@@ -156,25 +164,54 @@ function POS({ activeBranch }) {
                           onClick={() => addToCart(p)} 
                           className="group bg-surface-container-low rounded-2xl border border-white/5 hover:border-primary/40 hover:bg-surface-container-low/80 transition-all cursor-pointer active:scale-[0.98] overflow-hidden"
                         >
-                           <div className="aspect-square bg-gradient-to-b from-background/30 to-background/10 p-4 flex items-center justify-center">
-                              {p.img ? (
-                                <img src={p.img} className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity" />
-                              ) : (
-                                <span className="material-symbols-outlined text-5xl text-slate-600">tire_repair</span>
-                              )}
-                           </div>
-                           <div className="p-3">
-                              <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest truncate">{p.brand || 'V-NANDO'}</p>
-                              <h4 className="text-xs font-bold text-slate-100 uppercase truncate mb-2 leading-tight">{p.name}</h4>
-                              <div className="flex justify-between items-center">
-                                 <span className="text-lg font-black text-primary">${parseFloat(p.price).toFixed(0)}</span>
-                                 {!p.isService && (
-                                   <span className={`text-[8px] px-2 py-1 rounded-full font-bold ${isLow ? 'bg-red-500/20 text-red-400' : 'bg-emerald-500/20 text-emerald-400'}`}>
-                                     {p.qty}
-                                   </span>
-                                 )}
-                              </div>
-                           </div>
+                             <div className="aspect-square bg-surface-container-low p-4 flex items-center justify-center">
+                                {p.img ? (
+                                  <img src={p.img} className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity" />
+                                ) : (
+                                  <span className="material-symbols-outlined text-5xl text-slate-600">tire_repair</span>
+                                )}
+                             </div>
+                             <div className="p-3">
+                                <div className="flex justify-between items-start mb-1">
+                                   <div className="flex-1 min-w-0">
+                                      <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest truncate">{p.brand || 'V-NANDO'}</p>
+                                      <h4 className="text-xs font-bold text-slate-100 uppercase truncate mb-2 leading-tight">{p.name}</h4>
+                                   </div>
+                                   {isAdmin && p.isService && (
+                                      <div className="flex gap-1 ml-2">
+                                         <button
+                                            onClick={(e) => {
+                                               e.stopPropagation();
+                                               // Handle edit - open modal or form
+                                               alert('Función de edición: ' + p.name);
+                                            }}
+                                            className="p-1 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-all"
+                                         >
+                                            <span className="material-symbols-outlined text-sm">edit</span>
+                                         </button>
+                                         <button
+                                            onClick={(e) => {
+                                               e.stopPropagation();
+                                               if(window.confirm('¿Eliminar servicio?')) {
+                                                  alert('Función de eliminar: ' + p.name);
+                                               }
+                                            }}
+                                            className="p-1 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-all"
+                                         >
+                                            <span className="material-symbols-outlined text-sm">delete</span>
+                                         </button>
+                                      </div>
+                                   )}
+                                </div>
+                                <div className="flex justify-between items-center">
+                                   <span className="text-lg font-black text-primary">${parseFloat(p.price).toFixed(0)}</span>
+                                   {!p.isService && (
+                                     <span className={`text-[8px] px-2 py-1 rounded-full font-bold ${isLow ? 'bg-red-500/20 text-red-400' : 'bg-emerald-500/20 text-emerald-400'}`}>
+                                       {p.qty}
+                                     </span>
+                                   )}
+                                </div>
+                             </div>
                         </div>
                      )
                  })}
@@ -184,7 +221,7 @@ function POS({ activeBranch }) {
 
       {/* Lado derecho: Carrito de Compras */}
       <aside className="w-full lg:w-96 flex flex-col bg-surface-container-lowest border-t lg:border-t-0 lg:border-l border-white/10 shrink-0">
-          <div className="p-4 bg-gradient-to-r from-primary to-primary/80 text-background font-bold uppercase text-xs tracking-widest flex items-center justify-between shadow-lg">
+          <div className="p-4 bg-primary text-on-primary font-bold uppercase text-xs tracking-widest flex items-center justify-between shadow-lg">
               <span className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-lg">receipt_long</span>
                 Orden Actual
@@ -261,7 +298,7 @@ function POS({ activeBranch }) {
                 {[
                   { method: 'Efectivo', icon: 'payments' },
                   { method: 'Tarjeta', icon: 'credit_card' },
-                  { method: 'Transfer', icon: 'send' },
+                  { method: 'Transferencia', icon: 'send' },
                   { method: 'Crédito', icon: 'account_balance' }
                 ].map(({ method, icon }) => (
                    <button 
@@ -275,38 +312,40 @@ function POS({ activeBranch }) {
                 ))}
              </div>
 
-             <button 
-               onClick={handleCheckout} 
-               disabled={processing || cart.length === 0}
-               className="w-full py-3.5 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-background font-bold uppercase tracking-wider text-xs rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-             >
-               {processing ? (
-                 <>
-                   <span className="animate-spin material-symbols-outlined">sync</span>
-                   Procesando...
-                 </>
-               ) : (
-                 <>
-                   <span className="material-symbols-outlined">check_circle</span>
-                   Cobrar
-                 </>
-               )}
-             </button>
+             {isAdmin && (
+              <button 
+                onClick={handleCheckout} 
+                disabled={processing || cart.length === 0}
+                className="w-full py-3.5 bg-primary text-on-primary font-bold uppercase tracking-wider text-xs rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:bg-primary-dim transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {processing ? (
+                  <>
+                    <span className="animate-spin material-symbols-outlined">sync</span>
+                    Procesando...
+                  </>
+                ) : (
+                  <>
+                    <span className="material-symbols-outlined">check_circle</span>
+                    Cobrar
+                  </>
+                )}
+              </button>
+             )}
           </div>
       </aside>
 
       {/* Ticket Modal */}
       {ticket && (
          <div className="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center backdrop-blur-md p-4">
-             <div className="bg-white text-black max-w-sm w-full rounded-2xl p-6 shadow-2xl">
-                <div className="text-center mb-4 border-b border-dashed border-slate-300 pb-4">
-                   <div className="w-20 h-20 mx-auto mb-3 rounded-xl overflow-hidden border-2 border-slate-200">
-                     <img src="https://raw.githubusercontent.com/mizraimmartinez/vulcanizadora-nando/main/Biblioteca/logo_nando.jpg" alt="Nando" className="w-full h-full object-cover" />
+             <div className="bg-surface text-on-surface max-w-sm w-full rounded-2xl p-6 shadow-2xl">
+                <div className="text-center mb-4 border-b border-dashed border-white/10 pb-4">
+                   <div className="w-20 h-20 mx-auto mb-3 rounded-xl overflow-hidden border-2 border-white/10">
+                       <img src="/images/logo_nando.jpg" alt="Nando" className="w-full h-full object-contain" />
                    </div>
-                   <h1 className="font-black text-lg">VULCANIZADORA NANDO</h1>
-                   <p className="text-[10px] uppercase font-bold text-slate-500">{activeBranch}</p>
+                   <h1 className="font-bold text-on-surface text-lg">VULCANIZADORA NANDO</h1>
+                   <p className="text-[10px] uppercase font-bold text-on-surface/60">{activeBranch}</p>
                 </div>
-                <div className="border-b border-dashed border-slate-300 py-3 mb-4 space-y-1 text-[10px]">
+                <div className="border-b border-dashed border-white/10 py-3 mb-4 space-y-1 text-[10px] text-on-surface/60">
                    <div className="flex justify-between"><span>Folio:</span><span className="font-bold">{ticket.orderId}</span></div>
                    <div className="flex justify-between"><span>Fecha:</span><span>{ticket.date}</span></div>
                    <div className="flex justify-between"><span>Método:</span><span className="font-bold">{ticket.paymentMethod}</span></div>
@@ -324,12 +363,12 @@ function POS({ activeBranch }) {
                     <span>IVA (16%)</span><span>${ticket.tax.toFixed(2)}</span>
                   </div>
                 )}
-                <div className="flex justify-between text-lg font-black border-t-2 border-black pt-3">
+                <div className="flex justify-between text-lg font-bold text-on-surface border-t-2 border-white/10 pt-3">
                     <span>TOTAL</span>
                     <span>${ticket.total.toFixed(2)}</span>
                 </div>
-                <div className="mt-6 text-center text-[10px] text-slate-400">¡Gracias por su preferencia!</div>
-                <button onClick={() => setTicket(null)} className="mt-4 w-full bg-black text-white py-3 text-xs font-bold uppercase tracking-widest rounded-xl">Cerrar</button>
+                <div className="mt-6 text-center text-[10px] text-on-surface/60">¡Gracias por su preferencia!</div>
+                <button onClick={() => setTicket(null)} className="mt-4 w-full bg-primary text-on-primary py-3 text-xs font-bold uppercase tracking-widest rounded-xl">Cerrar</button>
              </div>
          </div>
       )}
@@ -337,4 +376,4 @@ function POS({ activeBranch }) {
   )
 }
 
-export default POS
+export default POS;
