@@ -735,6 +735,47 @@ const openEditModal = (product) => {
           </div>
        )}
 
+      {/* Delete Confirmation Modal */}
+      {deleteTarget && (
+        <div className="fixed inset-0 z-50 bg-black/90 p-4 flex items-center justify-center backdrop-blur-md">
+          <div className="bg-surface-container-lowest max-w-sm w-full rounded-2xl p-6 border border-error/30 space-y-4">
+            <div className="text-center space-y-2">
+              <div className="w-12 h-12 mx-auto rounded-full bg-error/20 flex items-center justify-center">
+                <span className="material-symbols-outlined text-error text-[28px]">warning</span>
+              </div>
+              <h3 className="text-base font-black uppercase text-error tracking-widest">Eliminar {deleteTarget.name}</h3>
+              <p className="text-xs text-slate-400">Esta acción es permanente y no se puede deshacer. La llanta y todo su stock se eliminarán de la base de datos.</p>
+            </div>
+            <div className="space-y-1">
+              <label className="text-[10px] text-slate-500 font-black uppercase">Escribe <span className="text-error">ELIMINAR</span> para confirmar</label>
+              <input
+                type="text"
+                value={confirmText}
+                onChange={e => setConfirmText(e.target.value)}
+                placeholder="ELIMINAR"
+                className="w-full input-industrial py-3 text-xs uppercase"
+                autoFocus
+                disabled={deleting}
+              />
+            </div>
+            <button
+              onClick={handleDeleteProduct}
+              disabled={confirmText !== 'ELIMINAR' || deleting}
+              className="w-full py-4 text-xs font-black uppercase bg-error text-white rounded-xl disabled:opacity-30 disabled:cursor-not-allowed hover:bg-error/90"
+            >
+              {deleting ? 'Eliminando...' : 'Eliminar para siempre'}
+            </button>
+            <button
+              onClick={closeDeleteModal}
+              disabled={deleting}
+              className="w-full text-slate-500 text-[10px] font-black uppercase py-2"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      )}
+
       <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sticky top-0 bg-background/50 backdrop-blur-md py-4 z-10 border-b border-white/10">
         <div>
           <h2 className="text-2xl lg:text-3xl font-headline font-black text-on-surface uppercase">Inventario</h2>
