@@ -765,9 +765,17 @@ const openEditModal = (product) => {
             </thead>
             <tbody className="divide-y divide-white/5">
               {filtered.map(p => (
-                <tr key={p.id} className="hover:bg-white/5 transition-all group">
+                <tr key={p.id} className={`hover:bg-white/5 transition-all group ${!(p.active ?? true) ? 'opacity-60' : ''}`}>
                   <td className="px-6 py-4"><img src={p.img} className="w-12 h-12 object-contain bg-background p-1 rounded-lg border border-white/5" /></td>
-                  <td className="px-6 py-4 font-bold text-sm uppercase text-on-surface">{p.name} <p className="text-[10px] text-slate-500 font-mono italic">#{p.sku}</p></td>
+                  <td className="px-6 py-4 font-bold text-sm uppercase text-on-surface">
+                    <div className="flex items-center gap-2">
+                      <span>{p.name}</span>
+                      {!(p.active ?? true) && (
+                        <span className="text-[9px] font-black uppercase bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded">⏸ Pausado</span>
+                      )}
+                    </div>
+                    <p className="text-[10px] text-slate-500 font-mono italic">#{p.sku}</p>
+                  </td>
                   <td className="px-6 py-4 text-xs text-slate-400 uppercase font-black">{p.brand}</td>
                   <td className="px-6 py-4 text-center"><span className={`px-2 py-1 rounded text-xs font-black ${parseInt(p.qty) < 5 ? 'bg-error/20 text-error animate-pulse' : 'bg-emerald-400/20 text-emerald-400'}`}>{p.qty}</span></td>
                   <td className="px-6 py-4 text-right font-headline font-bold text-primary">${parseFloat(p.price).toFixed(2)}</td>
@@ -818,10 +826,15 @@ const openEditModal = (product) => {
           {/* Version Móvil (Cards) */}
           <div className="md:hidden flex flex-col divide-y divide-white/5">
              {filtered.map(p => (
-                <div key={p.id} className="p-4 flex gap-4 items-center">
+                 <div key={p.id} className={`p-4 flex gap-4 items-center ${!(p.active ?? true) ? 'opacity-60' : ''}`}>
                    <img src={p.img} className="w-16 h-16 object-contain bg-background p-2 rounded-xl border border-white/5 shrink-0" />
                    <div className="flex-1 min-w-0">
-                      <h4 className="text-xs font-bold text-on-surface uppercase truncate">{p.name}</h4>
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-xs font-bold text-on-surface uppercase truncate">{p.name}</h4>
+                        {!(p.active ?? true) && (
+                          <span className="text-[8px] font-black uppercase bg-amber-500/20 text-amber-400 px-1 py-0.5 rounded shrink-0">⏸ Pausado</span>
+                        )}
+                      </div>
                       <p className="text-[9px] text-slate-500 font-black uppercase mb-1">{p.brand}</p>
 <div className="flex justify-between items-center">
                           <span className={`text-[10px] font-black uppercase ${parseInt(p.qty) < 5 ? 'text-error animate-pulse' : 'text-emerald-400'}`}>{p.qty} DISP.</span>
