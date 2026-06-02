@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { fetchData, postData, updateData, db, storage } from '../services/api'
+import { fetchData, postData, updateData, deleteData, db, storage } from '../services/api'
 import { doc, runTransaction, getDoc, collection } from 'firebase/firestore'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { Html5Qrcode } from 'html5-qrcode'
@@ -356,6 +356,55 @@ const handleAddProduct = async () => {
 const openEditModal = (product) => {
     setEditingProduct({ ...product })
     setIsEditing(true)
+  }
+
+  const handleToggleActive = async (product) => {
+    if (!isAdmin) return
+    setMenuOpenId(null)
+    const newActive = !(product.active ?? true)
+    try {
+      const res = await updateData('Inventario', product.id, { active: newActive })
+      if (res.success) {
+        const data = await fetchData('Inventario', activeBranch)
+        if (Array.isArray(data)) setProducts(data)
+      } else {
+        throw new Error('Error en actualización')
+      }
+    } catch (e) {
+      alert('Error al cambiar estado: ' + e.message)
+    }
+  }
+
+  const openDeleteModal = (product) => {
+    setMenuOpenId(null)
+    setDeleteTarget(product)
+    setConfirmText('')
+  }
+
+  const closeDeleteModal = () => {
+    setDeleteTarget(null)
+    setConfirmText('')
+  }
+
+  const handleDeleteProduct = async () => {
+    if (!isAdmin || !deleteTarget) return
+    if (confirmText !== 'ELIMINAR') return
+    setDeleting(true)
+    try {
+      const res = await deleteData('Inventario', deleteTarget.id)
+      if (res.success) {
+        const data = await fetchData('Inventario', activeBranch)
+        if (Array.isArray(data)) setProducts(data)
+        closeDeleteModal()
+        alert('Llanta eliminada')
+      } else {
+        throw new Error('Error en eliminación')
+      }
+    } catch (e) {
+      alert('Error al eliminar: ' + e.message)
+    } finally {
+      setDeleting(false)
+    }
   }
 
   // Scanner functions
