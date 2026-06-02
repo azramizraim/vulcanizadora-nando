@@ -832,9 +832,40 @@ const openEditModal = (product) => {
                       <button onClick={() => { setSelectedProduct(p); setShowTransferModal(true); }} className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-primary active:bg-primary/20">
                         <span className="material-symbols-outlined text-[20px]">move_up</span>
                       </button>
-                      {isAdmin && <button onClick={() => openEditModal(p)} className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-amber-400 active:bg-amber-400/20">
-                        <span className="material-symbols-outlined text-[20px]">edit</span>
-                      </button>}
+                      {isAdmin && (
+                        <div className="relative" ref={menuOpenId === p.id ? menuRef : null}>
+                          <button
+                            onClick={() => setMenuOpenId(menuOpenId === p.id ? null : p.id)}
+                            className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-slate-300 active:bg-white/10"
+                            aria-label="Más acciones"
+                          >
+                            <span className="material-symbols-outlined text-[20px]">more_vert</span>
+                          </button>
+                          {menuOpenId === p.id && (
+                            <div className="absolute right-0 top-12 z-30 min-w-[180px] bg-surface-container-highest border border-white/10 rounded-xl shadow-2xl py-1 text-left">
+                              <button
+                                onClick={() => { setMenuOpenId(null); openEditModal(p); }}
+                                className="w-full px-4 py-2 text-xs text-slate-200 hover:bg-white/5 flex items-center gap-2"
+                              >
+                                <span className="material-symbols-outlined text-[16px]">edit</span> Editar
+                              </button>
+                              <button
+                                onClick={() => handleToggleActive(p)}
+                                className="w-full px-4 py-2 text-xs text-amber-400 hover:bg-white/5 flex items-center gap-2"
+                              >
+                                <span className="material-symbols-outlined text-[16px]">{(p.active ?? true) ? 'pause' : 'play_arrow'}</span>
+                                {(p.active ?? true) ? 'Desactivar venta' : 'Reactivar venta'}
+                              </button>
+                              <button
+                                onClick={() => openDeleteModal(p)}
+                                className="w-full px-4 py-2 text-xs text-error hover:bg-white/5 flex items-center gap-2"
+                              >
+                                <span className="material-symbols-outlined text-[16px]">delete</span> Eliminar definitivamente
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                  </div>
              ))}
