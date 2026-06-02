@@ -771,12 +771,45 @@ const openEditModal = (product) => {
                   <td className="px-6 py-4 text-xs text-slate-400 uppercase font-black">{p.brand}</td>
                   <td className="px-6 py-4 text-center"><span className={`px-2 py-1 rounded text-xs font-black ${parseInt(p.qty) < 5 ? 'bg-error/20 text-error animate-pulse' : 'bg-emerald-400/20 text-emerald-400'}`}>{p.qty}</span></td>
                   <td className="px-6 py-4 text-right font-headline font-bold text-primary">${parseFloat(p.price).toFixed(2)}</td>
-<td className="px-6 py-4 text-center">
-                     <div className="flex items-center justify-center gap-2">
-                       {isAdmin && <button onClick={() => openEditModal(p)} className="w-8 h-8 rounded-full border border-white/5 flex items-center justify-center text-slate-400 hover:text-amber-400 transition-all"><span className="material-symbols-outlined text-[16px]">edit</span></button>}
-                       <button onClick={() => { setSelectedProduct(p); setShowTransferModal(true); }} className="w-8 h-8 rounded-full border border-white/5 flex items-center justify-center text-slate-500 hover:text-primary transition-all"><span className="material-symbols-outlined text-[16px]">swap_horiz</span></button>
-                     </div>
-                   </td>
+                      <td className="px-6 py-4 text-center">
+                      <div className="flex items-center justify-center gap-2">
+                        {isAdmin && (
+                          <div className="relative" ref={menuOpenId === p.id ? menuRef : null}>
+                            <button
+                              onClick={() => setMenuOpenId(menuOpenId === p.id ? null : p.id)}
+                              className="w-8 h-8 rounded-full border border-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all"
+                              aria-label="Más acciones"
+                            >
+                              <span className="material-symbols-outlined text-[16px]">more_vert</span>
+                            </button>
+                            {menuOpenId === p.id && (
+                              <div className="absolute right-0 top-10 z-30 min-w-[180px] bg-surface-container-highest border border-white/10 rounded-xl shadow-2xl py-1 text-left">
+                                <button
+                                  onClick={() => { setMenuOpenId(null); openEditModal(p); }}
+                                  className="w-full px-4 py-2 text-xs text-slate-200 hover:bg-white/5 flex items-center gap-2"
+                                >
+                                  <span className="material-symbols-outlined text-[16px]">edit</span> Editar
+                                </button>
+                                <button
+                                  onClick={() => handleToggleActive(p)}
+                                  className="w-full px-4 py-2 text-xs text-amber-400 hover:bg-white/5 flex items-center gap-2"
+                                >
+                                  <span className="material-symbols-outlined text-[16px]">{(p.active ?? true) ? 'pause' : 'play_arrow'}</span>
+                                  {(p.active ?? true) ? 'Desactivar venta' : 'Reactivar venta'}
+                                </button>
+                                <button
+                                  onClick={() => openDeleteModal(p)}
+                                  className="w-full px-4 py-2 text-xs text-error hover:bg-white/5 flex items-center gap-2"
+                                >
+                                  <span className="material-symbols-outlined text-[16px]">delete</span> Eliminar definitivamente
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                        <button onClick={() => { setSelectedProduct(p); setShowTransferModal(true); }} className="w-8 h-8 rounded-full border border-white/5 flex items-center justify-center text-slate-500 hover:text-primary transition-all"><span className="material-symbols-outlined text-[16px]">swap_horiz</span></button>
+                      </div>
+                    </td>
                 </tr>
               ))}
             </tbody>
