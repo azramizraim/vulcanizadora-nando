@@ -1,0 +1,11 @@
+nombre,marca,precio,costo,cantidad,sku
+Llanta 175/65R14,Michelin,1200,800,10,LLN-175-65-14-MICH
+Llanta 185/65R15,Bridgestone,1400,950,5,LLN-185-65-15-BRID
+Llanta 195/55R16,Goodyear,1600,1100,8,LLN-195-55-16-GOOD
+Batería 12V-60Ah,Bosch,2500,1800,3,BAT-12V-60-BOSCH
+Batería 12V-70Ah,Varta,2800,2000,2,BAT-12V-70-VART
+Filtro de Aceite,Wix,180,120,15,FIL-ACE-WIX
+Filtro de Aire,Mann,220,150,12,FIL-ARE-MANN
+Bujía NGK,Iridium,120,80,20,BUJ-NGK-IRI
+Amortiguador Monroe,Delantero,1200,800,4,AMO-MON-DEL
+Amortiguador Monroe,Trasero,1100,750,6,AMO-MON-TRA

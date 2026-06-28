@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { fetchData, postData } from '../services/api'
+import { LoadingTire } from './LoadingTire'
 
 function Expenses({ activeBranch }) {
   const [expenses, setExpenses] = useState([])
@@ -18,7 +19,7 @@ function Expenses({ activeBranch }) {
         setLoading(true)
         const data = await fetchData('Gastos', activeBranch)
         if (active) {
-            const sorted = Array.isArray(data) ? data.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0)) : []
+            const sorted = Array.isArray(data) ? data.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0)) : []
             setExpenses(sorted)
         }
       } catch (err) {
@@ -36,10 +37,9 @@ function Expenses({ activeBranch }) {
     setIsSaving(true)
     try {
       const expenseData = {
-        ...newExpense,
+        description: newExpense.concept,
         amount: parseFloat(newExpense.amount),
-        date: new Date().toLocaleString('es-MX'),
-        timestamp: new Date().getTime(),
+        category: newExpense.category,
         branch: activeBranch
       }
       const res = await postData('Gastos', expenseData)
@@ -49,7 +49,7 @@ function Expenses({ activeBranch }) {
         // Refresh local state
         const updatedData = await fetchData('Gastos', activeBranch)
         if (Array.isArray(updatedData)) {
-            const sorted = updatedData.sort((a,b) => b.timestamp - a.timestamp)
+            const sorted = updatedData.sort((a,b) => new Date(b.created_at || 0) - new Date(a.created_at || 0))
             setExpenses(sorted)
         }
       }
@@ -61,12 +61,8 @@ function Expenses({ activeBranch }) {
   }
 
   if (loading) return (
-    <div className="p-8 h-full flex flex-col items-center justify-center gap-6 animate-pulse">
-      <div className="w-20 h-20 border-8 border-primary/20 border-t-primary rounded-full animate-spin"></div>
-      <div className="text-center space-y-2">
-        <h3 className="text-xl font-headline font-bold text-primary tracking-widest uppercase">Cargando Egresos...</h3>
-        <p className="text-slate-500 text-sm italic">Obteniendo movimientos en la Nube ({activeBranch})</p>
-      </div>
+    <div className="p-8 h-full flex flex-col items-center justify-center gap-6">
+      <LoadingTire size="lg" />
     </div>
   )
 
@@ -182,8 +178,8 @@ function Expenses({ activeBranch }) {
               <tbody className="divide-y divide-white/5 font-body">
                 {expenses.map((exp) => (
                   <tr key={exp.id} className="hover:bg-error/5 transition-colors">
-                    <td className="px-6 py-4 text-xs font-mono text-slate-400">{exp.date}</td>
-                    <td className="px-6 py-4 font-bold text-on-surface text-sm uppercase">{exp.concept}</td>
+                    <td className="px-6 py-4 text-xs font-mono text-slate-400">{new Date(exp.created_at).toLocaleString('es-MX')}</td>
+                    <td className="px-6 py-4 font-bold text-on-surface text-sm uppercase">{exp.description}</td>
                     <td className="px-6 py-4">
                       <span className="px-2 py-1 rounded bg-surface-container-highest text-[10px] font-black uppercase text-slate-500 border border-white/5">{exp.category}</span>
                     </td>

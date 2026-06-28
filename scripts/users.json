@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "email": "admin@vnando.com",
+      "password": "AdminNando2026",
+      "role": "admin",
+      "branch": "Rojo Gomez"
+    },
+    {
+      "email": "emgasp2016@gmail.com",
+      "password": "23ETV0018E",
+      "role": "vendedor",
+      "branch": "Rojo Gomez"
+    }
+  ]
+}

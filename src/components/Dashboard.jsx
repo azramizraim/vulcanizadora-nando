@@ -32,9 +32,27 @@ function Dashboard({ activeBranch, isAdmin }) {
   }, [activeBranch])
 
   if (loading) return (
-    <div className="p-8 h-full flex flex-col items-center justify-center gap-6 animate-pulse">
-      <div className="w-20 h-20 border-8 border-primary/20 border-t-primary rounded-full animate-spin"></div>
-      <h3 className="text-xl font-headline font-bold text-primary tracking-widest uppercase">Sincronizando Nube VNando...</h3>
+    <div className="p-8 h-full flex flex-col items-center justify-center gap-6">
+      <div className="relative w-20 h-20">
+        <svg viewBox="0 0 100 100" className="w-full h-full animate-spin" style={{ animationDuration: '1s' }}>
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="4" className="text-primary/30" />
+          <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary/50" />
+          {Array.from({ length: 8 }).map((_, i) => {
+            const angle = i * 45
+            const rad = (angle * Math.PI) / 180
+            const x1 = 50 + 15 * Math.cos(rad)
+            const y1 = 50 + 15 * Math.sin(rad)
+            const x2 = 50 + 38 * Math.cos(rad)
+            const y2 = 50 + 38 * Math.sin(rad)
+            return (
+              <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="text-primary" />
+            )
+          })}
+          <circle cx="50" cy="50" r="12" fill="currentColor" className="text-surface-container-high" />
+          <circle cx="50" cy="50" r="6" fill="currentColor" className="text-primary" />
+        </svg>
+      </div>
+      <h3 className="text-xl font-headline font-bold text-primary tracking-widest uppercase">Cargando...</h3>
     </div>
   )
 
@@ -89,23 +107,23 @@ function Dashboard({ activeBranch, isAdmin }) {
           </div>
           
           <div className="space-y-2 lg:space-y-3">
-             {criticalStock.map(item => (
-                <div key={item.id} className="flex items-center justify-between p-3 lg:p-4 bg-white/5 rounded-xl border border-white/5 hover:border-error/30 transition-all">
-                   <div className="flex items-center gap-3 lg:gap-4 overflow-hidden">
-                      <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-surface-container-low p-1.5 border border-white/5 overflow-hidden shrink-0">
-                         <img src={item.img} className="w-full h-full object-contain" />
-                      </div>
-                      <div className="min-w-0">
-                         <p className="text-xs font-bold text-on-surface uppercase truncate">{item.name}</p>
-                         <p className="text-[9px] text-slate-500 font-mono italic truncate"># {item.sku}</p>
-                      </div>
-                   </div>
-                   <div className="text-right shrink-0">
-                      <p className="text-lg lg:text-xl font-headline font-black text-error leading-none">{item.qty}</p>
-                      <p className="text-[8px] lg:text-[10px] text-slate-500 uppercase font-black uppercase">Unid.</p>
-                   </div>
-                </div>
-             ))}
+{criticalStock.map(item => (
+                 <div key={item.id} className="flex items-center justify-between p-3 lg:p-4 bg-white/5 rounded-xl border border-white/5 hover:border-error/30 transition-all cursor-pointer" onClick={() => { localStorage.setItem('focusProduct', item.id); localStorage.setItem('targetScreen', 'inventory'); window.dispatchEvent(new Event('storage')); }}>
+                    <div className="flex items-center gap-3 lg:gap-4 overflow-hidden">
+                       <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-surface-container-low p-1.5 border border-white/5 overflow-hidden shrink-0">
+                          <img src={item.img} className="w-full h-full object-contain" />
+                       </div>
+                       <div className="min-w-0">
+                          <p className="text-xs font-bold text-on-surface uppercase truncate">{item.name}</p>
+                          <p className="text-[9px] text-slate-500 font-mono italic truncate"># {item.sku}</p>
+                       </div>
+                    </div>
+                    <div className="text-right shrink-0">
+                       <p className="text-lg lg:text-xl font-headline font-black text-error leading-none">{item.qty}</p>
+                       <p className="text-[8px] lg:text-[10px] text-slate-500 uppercase font-black uppercase">Unid.</p>
+                    </div>
+                 </div>
+              ))}
              {criticalStock.length === 0 && (
                 <div className="py-20 text-center opacity-20">
                    <span className="material-symbols-outlined text-6xl mb-4">check_circle</span>

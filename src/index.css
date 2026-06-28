@@ -2,13 +2,131 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS Variables for Theme Switching */
+:root {
+  /* Light Theme (Default) */
+  --color-primary: #F03E1A;
+  --color-primary-container: #ffdbd6;
+  --color-primary-dim: #c34d3f;
+  --color-primary-fixed: #F03E1A;
+  --color-primary-fixed-dim: #c34d3f;
+  --color-secondary: #006493;
+  --color-secondary-container: #cce5ff;
+  --color-secondary-dim: #004e7a;
+  --color-secondary-fixed: #006493;
+  --color-secondary-fixed-dim: #004e7a;
+  --color-tertiary: #4f5f7d;
+  --color-tertiary-container: #d9e4ff;
+  --color-tertiary-dim: #38466b;
+  --color-tertiary-fixed: #4f5f7d;
+  --color-tertiary-fixed-dim: #38466b;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-error-dim: #93000a;
+  --color-background: #fff8f6;
+  --color-surface: #fff8f6;
+  --color-surface-bright: #ffffff;
+  --color-surface-dim: #f2eefc;
+  --color-surface-variant: #e0e2ec;
+  --color-surface-tint: #F03E1A;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #fff1ec;
+  --color-surface-container: #ffebf5;
+  --color-surface-container-high: #ffdfe9;
+  --color-surface-container-highest: #ffd9d3;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #3f0800;
+  --color-on-primary-fixed: #ffffff;
+  --color-on-primary-fixed-variant: #5c1a00;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #001e30;
+  --color-on-secondary-fixed: #ffffff;
+  --color-on-secondary-fixed-variant: #001e30;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #151d35;
+  --color-on-tertiary-fixed: #ffffff;
+  --color-on-tertiary-fixed-variant: #151d35;
+  --color-on-surface: #1c1b1e;
+  --color-on-surface-variant: #44474e;
+  --color-on-background: #1c1b1e;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #410001;
+  --color-inverse-surface: #2e2c30;
+  --color-inverse-on-surface: #f2eefc;
+  --color-inverse-primary: #F03E1A;
+  --color-outline: #74777d;
+  --color-outline-variant: #c4c6d0;
+}
+
+.dark {
+  /* Dark Theme */
+  --color-primary: #F03E1A;
+  --color-primary-container: #d92c1a;
+  --color-primary-dim: #c4272a;
+  --color-primary-fixed: #F03E1A;
+  --color-primary-fixed-dim: #d92c1a;
+  --color-secondary: #6ebaf7;
+  --color-secondary-container: #006497;
+  --color-secondary-dim: #5face8;
+  --color-secondary-fixed: #aad6ff;
+  --color-secondary-fixed-dim: #8bcaff;
+  --color-tertiary: #d4e7ff;
+  --color-tertiary-container: #c3d9f3;
+  --color-tertiary-dim: #b6cbe5;
+  --color-tertiary-fixed: #c3d9f3;
+  --color-tertiary-fixed-dim: #b6cbe5;
+  --color-error: #ff7351;
+  --color-error-container: #b92902;
+  --color-error-dim: #d53d18;
+  --color-background: #000f1e;
+  --color-surface: #000f1e;
+  --color-surface-bright: #0e2e48;
+  --color-surface-dim: #000f1e;
+  --color-surface-variant: #09283f;
+  --color-surface-tint: #F03E1A;
+  --color-surface-container-lowest: #000000;
+  --color-surface-container-low: #001526;
+  --color-surface-container: #021b2f;
+  --color-surface-container-high: #052137;
+  --color-surface-container-highest: #09283f;
+  --color-on-primary: #4c2300;
+  --color-on-primary-container: #3b1a00;
+  --color-on-primary-fixed: #0f0400;
+  --color-on-primary-fixed-variant: #502500;
+  --color-on-secondary: #003654;
+  --color-on-secondary-container: #f4f8ff;
+  --color-on-secondary-fixed: #003757;
+  --color-on-secondary-fixed-variant: #005582;
+  --color-on-tertiary: #40556b;
+  --color-on-tertiary-container: #384d62;
+  --color-on-tertiary-fixed: #253a4e;
+  --color-on-tertiary-fixed-variant: #41566c;
+  --color-on-surface: #d4e7fe;
+  --color-on-surface-variant: #9aadc3;
+  --color-on-background: #d4e7fe;
+  --color-on-error: #450900;
+  --color-on-error-container: #ffd2c8;
+  --color-inverse-surface: #f7f9ff;
+  --color-inverse-on-surface: #45576a;
+  --color-inverse-primary: #954b00;
+  --color-outline: #65778b;
+  --color-outline-variant: #384a5c;
+}
+
 @layer base {
   body {
-    @apply bg-background text-on-background selection:bg-primary/30 selection:text-white;
+    background-color: var(--color-background);
+    color: var(--color-on-background);
   }
 
   h1, h2, h3, h4, h5, h6, .headline {
     @apply font-headline;
+  }
+
+  /* Selection colors */
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
   }
 
   /* Custom scrollbar for industrial feel */
@@ -16,43 +134,80 @@
     width: 4px;
   }
   ::-webkit-scrollbar-track {
-    background: #000f1e;
+    background-color: var(--color-surface-container-lowest);
   }
   ::-webkit-scrollbar-thumb {
-    background: #1e293b;
+    background-color: var(--color-primary);
     border-radius: 2px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #ff9238;
+    background-color: var(--color-primary-dim);
   }
 }
 
 @layer components {
   /* Tonal Layering Utilities from DESIGN.md */
-  .surface-base { @apply bg-surface; }
-  .surface-workbench { @apply bg-surface-container-low; }
-  .surface-tool { @apply bg-surface-container-highest; }
+  .surface-base { background-color: var(--color-surface); }
+  .surface-workbench { background-color: var(--color-surface-container-low); }
+  .surface-tool { background-color: var(--color-surface-container-highest); }
 
   /* Machined Toggle Buttons */
   .btn-primary {
-    @apply bg-primary text-on-primary-container font-headline font-bold px-6 py-2 rounded-lg 
-           hover:bg-primary-fixed-dim transition-all active:scale-95 shadow-lg shadow-primary/10;
+    background-color: var(--color-primary);
+    color: var(--color-on-primary-container);
+    font-family: var(--font-headline);
+    font-weight: bold;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 300ms;
+  }
+  .btn-primary:hover {
+    background-color: var(--color-primary-fixed-dim);
+    box-shadow: 0 10px 15px rgba(240, 62, 26, 0.1);
   }
   
   .btn-tertiary {
-    @apply text-on-surface hover:text-primary transition-all relative after:content-[''] after:absolute 
-           after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full 
-           after:transition-all px-1 py-0.5;
+    color: var(--color-on-surface);
+    transition: all 300ms;
+    position: relative;
+    padding: 0.5rem 0.25rem;
+  }
+  .btn-tertiary:hover {
+    color: var(--color-primary);
+  }
+  .btn-tertiary::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-primary);
+    transition: width 300ms;
+  }
+  .btn-tertiary:hover::after {
+    width: 100%;
   }
 
   /* Industrial Inputs */
   .input-industrial {
-    @apply bg-surface-container-lowest border-0 border-l-0 focus:border-l-2 focus:border-primary 
-           focus:ring-0 text-sm text-on-surface rounded-lg placeholder:text-slate-600 transition-all;
+    background-color: var(--color-surface-container-lowest);
+    border: 0;
+    border-left: 0;
+    transition: all 300ms;
+  }
+  .input-industrial:focus {
+    border-left: 2px solid var(--color-primary);
+    outline: 0;
+    color: var(--color-on-surface);
+    border-radius: 0.5rem;
   }
 
-  /* Glassmorphism for mods */
+  /* Glassmorphism for modals */
   .glass-modal {
-    @apply bg-surface-variant/60 backdrop-blur-[20px] rounded-xl border border-white/5;
+    background-color: rgba(var(--color-surface-variant), 0.6);
+    backdrop-filter: blur(20px);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
 }

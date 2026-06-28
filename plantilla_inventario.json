@@ -1,0 +1,62 @@
+[
+  {
+    "sku": "11856799",
+    "nombre": "Eagle Sport 205/55R16 91V",
+    "marca": "Goodyear",
+    "precio": 2000,
+    "costo": 1500,
+    "cantidad": 20,
+    "sucursal": "Rojo Gomez",
+    "imagen": "https://http2.mlstatic.com/D_NQ_NP_764592-MLA99442568452_112025-O.webp"
+  },
+  {
+    "sku": "11856799",
+    "nombre": "Eagle Sport 205/55R16 91V",
+    "marca": "Goodyear",
+    "precio": 2000,
+    "costo": 1500,
+    "cantidad": 20,
+    "sucursal": "Morelos",
+    "imagen": "https://http2.mlstatic.com/D_NQ_NP_764592-MLA99442568452_112025-O.webp"
+  },
+  {
+    "sku": "11856799",
+    "nombre": "Eagle Sport 205/55R16 91V",
+    "marca": "Goodyear",
+    "precio": 2000,
+    "costo": 1500,
+    "cantidad": 15,
+    "sucursal": "Bacalar",
+    "imagen": "https://http2.mlstatic.com/D_NQ_NP_764592-MLA99442568452_112025-O.webp"
+  },
+  {
+    "sku": "46047361",
+    "nombre": "Ecsta PS31 215/45R17",
+    "marca": "Kumho",
+    "precio": 1600,
+    "costo": 1200,
+    "cantidad": 16,
+    "sucursal": "Rojo Gomez",
+    "imagen": "https://www.misterllantas.com/media/catalog/product/cache/860b7a2c70b7e271930e7a9c3934662d/k/u/kumho_ps31_ecsta_4.jpg"
+  },
+  {
+    "sku": "46047361",
+    "nombre": "Ecsta PS31 215/45R17",
+    "marca": "Kumho",
+    "precio": 1600,
+    "costo": 1200,
+    "cantidad": 12,
+    "sucursal": "Morelos",
+    "imagen": "https://www.misterllantas.com/media/catalog/product/cache/860b7a2c70b7e271930e7a9c3934662d/k/u/kumho_ps31_ecsta_4.jpg"
+  },
+  {
+    "sku": "46047361",
+    "nombre": "Ecsta PS31 215/45R17",
+    "marca": "Kumho",
+    "precio": 1600,
+    "costo": 1200,
+    "cantidad": 8,
+    "sucursal": "Bacalar",
+    "imagen": "https://www.misterllantas.com/media/catalog/product/cache/860b7a2c70b7e271930e7a9c3934662d/k/u/kumho_ps31_ecsta_4.jpg"
+  }
+]

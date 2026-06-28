@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "email": "admin@vnando.com",
+      "password": "CambiaEsto123!",
+      "role": "admin",
+      "branch": "Rojo Gomez"
+    },
+    {
+      "email": "vendedor1@vnando.com",
+      "password": "Vendedor123!",
+      "role": "vendedor",
+      "branch": "Rojo Gomez"
+    },
+    {
+      "email": "vendedor2@vnando.com",
+      "password": "Vendedor123!",
+      "role": "vendedor",
+      "branch": "Morelos"
+    }
+  ]
+}

@@ -1,12 +1,33 @@
-import React, { useState } from 'react';
-import { auth } from '../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useState, useEffect } from 'react';
+import { loginWithEmail as doLoginV2, isAuthenticated, getCurrentUser, setupAdmin, changePassword } from '../supabase-auth';
 
 function Login({ onLoginComplete }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  
+  
   const [loading, setLoading] = useState(false);
+  const [showAdminSetup, setShowAdminSetup] = useState(false);
+  const [adminEmail, setAdminEmail] = useState('');
+  const [secretCode, setSecretCode] = useState('');
+  const [adminMsg, setAdminMsg] = useState('');
+  const [showChangePass, setShowChangePass] = useState(null); // Disabled - only admin can change
+  const [changePassEmail, setChangePassEmail] = useState('');
+  const [newPass, setNewPass] = useState('');
+  const [changePassCode, setChangePassCode] = useState('');
+  const [changePassMsg, setChangePassMsg] = useState('');
+
+  useEffect(() => {
+    // Check for existing valid session
+    if (isAuthenticated()) {
+      const user = getCurrentUser()
+      if (user && onLoginComplete) {
+        localStorage.setItem('supabaseUser', JSON.stringify(user))
+        onLoginComplete()
+      }
+    }
+  }, [])
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -14,13 +35,48 @@ function Login({ onLoginComplete }) {
     setError('');
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      // Login successful, App.jsx listening to auth state will naturally re-render
+      const result = await doLoginV2(email, password)
+      
+      if (!result.success) {
+        setError(result.error || 'Credenciales incorrectas');
+        setLoading(false);
+        return;
+      }
+      
+      // Store user data in localStorage for App.jsx to read
+      localStorage.setItem('supabaseUser', JSON.stringify(result.user))
+      
+      // Trigger login complete
       if (onLoginComplete) onLoginComplete();
+      
     } catch (err) {
       console.error(err);
       setError('Credenciales incorrectas o usuario no encontrado.');
     }
+    setLoading(false);
+  };
+
+  const handleAdminSetup = async (e) => {
+    e.preventDefault();
+    if (!adminEmail || !secretCode) {
+      setAdminMsg('Completa todos los campos');
+      return;
+    }
+    setLoading(true);
+    const result = await setupAdmin(adminEmail, secretCode);
+    setAdminMsg(result.message || result.error);
+    setLoading(false);
+  };
+
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
+    if (!changePassEmail || !newPass || !changePassCode) {
+      setChangePassMsg('Completa todos los campos');
+      return;
+    }
+    setLoading(true);
+    const result = await changePassword(changePassEmail, newPass, changePassCode);
+    setChangePassMsg(result.message || result.error);
     setLoading(false);
   };
 
@@ -33,10 +89,10 @@ function Login({ onLoginComplete }) {
 
       <div className="w-full max-w-md surface-workbench border border-white/10 rounded-3xl p-8 relative z-10 shadow-2xl">
         <div className="flex flex-col items-center mb-10">
-          <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center border border-primary/30 shadow-[0_0_20px_rgba(255,146,56,0.3)] mb-6">
-            <span className="material-symbols-outlined text-4xl text-primary">car_repair</span>
+          <div className="w-24 h-24 rounded-2xl overflow-hidden border-2 border-primary/30 shadow-[0_0_25px_rgba(255,146,56,0.3)] mb-6">
+            <img src="/images/logo_nando.jpg" alt="Nando" className="w-full h-full object-contain" />
           </div>
-          <h1 className="text-3xl font-headline font-black tracking-tight text-on-surface uppercase text-center">VNando<br/><span className="text-primary text-xl">Cloud OS</span></h1>
+          <h1 className="text-3xl font-headline font-black tracking-tight text-on-surface uppercase text-center">Vulcanizadora<br/><span className="text-primary text-xl">Nando</span></h1>
           <p className="text-slate-400 mt-2 text-sm text-center">Plataforma Administrativa Multi-Sucursal</p>
         </div>
 
@@ -90,7 +146,48 @@ function Login({ onLoginComplete }) {
         <div className="mt-8 text-center border-t border-white/5 pt-6">
           <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest">Soporte Técnico de Sistema</p>
           <p className="text-xs text-slate-400">¿Problemas para entrar? Contacta al administrador general.</p>
+          <button
+            type="button"
+            onClick={() => setShowAdminSetup(!showAdminSetup)}
+            className="text-[10px] text-slate-600 mt-2 underline"
+          >
+            {showAdminSetup ? 'Ocultar' : '¿Eres admin?'}
+          </button>
         </div>
+
+        {showAdminSetup && (
+          <div className="mt-4 p-4 bg-slate-900/50 rounded-xl border border-white/10">
+            <p className="text-xs text-slate-400 mb-3">Configurar Administrador</p>
+            <form onSubmit={handleAdminSetup} className="space-y-2">
+              <input
+                type="email"
+                value={adminEmail}
+                onChange={(e) => setAdminEmail(e.target.value)}
+                className="w-full input-industrial py-2 text-xs"
+                placeholder="Tu correo"
+              />
+              <input
+                type="password"
+                value={secretCode}
+                onChange={(e) => setSecretCode(e.target.value)}
+                className="w-full input-industrial py-2 text-xs"
+                placeholder="Código secreto"
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-2 bg-primary/20 text-primary text-xs font-bold rounded-lg"
+              >
+                Activar Admin
+              </button>
+              {adminMsg && (
+                <p className={`text-xs text-center ${adminMsg.includes('inválido') ? 'text-error' : 'text-green-400'}`}>
+                  {adminMsg}
+                </p>
+              )}
+            </form>
+          </div>
+        )}
       </div>
     </div>
   );
